@@ -10,5 +10,8 @@
     "puppet"
   ],
   "author": "Walter Heck",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.34.0"
+  }
 }

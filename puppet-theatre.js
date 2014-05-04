@@ -54,7 +54,24 @@ app.get('/facter/:fact', function(req, res, next){
 
 // Get a list of nodes known to puppetdb
 app.get('/puppetdb/nodes/all', function(req, res){
-  res.send(puppetDB.getNodesAll());
+  puppetDB.getAllNodes(config.puppetdb, function(error, data) {
+      res.send(data);
+    });
+});
+
+// Get a list of all fact names known to puppetdb
+app.get('/puppetdb/fact-names', function(req, res){
+  puppetDB.getAllFactNames(config.puppetdb, function(error, data) {
+      res.send(data);
+    });
+});
+
+// Get the last stored facts for a node known to puppetdb
+app.get('/puppetdb/nodes/:node/facts', function(req, res){
+  var node = req.params.node;
+  puppetDB.getNodeFacts(config.puppetdb, node, function(error, data) {
+      res.send(data);
+    });
 });
 
 app.listen(config.listen_port);
