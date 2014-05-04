@@ -4,6 +4,7 @@
 .bower-*/
 .idea/
 node_modules/
+bower_components/
 public/system/lib
 test/coverage/
 modules/public/

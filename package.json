@@ -1,10 +1,17 @@
 {
-    "name": "puppet-theatre",
-    "description": "Puppet Theatre Application",
-    "version": "0.0.1",
-    "private": true,
-    "dependencies": {
-        "express": "3.x",
-        "mongodb": "1.4.x"
-    }
+  "name": "puppet-theatre",
+  "version": "0.0.1",
+  "description": "REST API interface for Hiera",
+  "main": "puppet-theatre.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "puppet-theatre"
+  ],
+  "author": "Walter Heck",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.1.1"
+  }
 }

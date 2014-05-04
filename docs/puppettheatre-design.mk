@@ -1,7 +1,7 @@
 Imagining Puppet Theater: a new Puppet Management Tool
 
 
-Requirements:
+High Level Requirements:
 
 1 Hiera editing
 2 Edit puppet manifests and modules in-place
@@ -18,7 +18,20 @@ Requirements:
 1. Hiera editing
 
 Initial phase: read only access
-In order to do this scalable and properly, we need a solid API against hiera that can be used to read and write keys, independent of the backend in use:
+
+In order to create a decent functioning hiera editor interface, we need to have a proper REST API we can talk to. The current hiera tool doesnt allow querying of hiera metadata (which backends? Which hierarchy levels?). For Puppet Theatre such functionality is important. We could hack it by parsing the hiera config file and gripping through disk, but it’s less then ideal. 
+We need to choose one of three options:
+
+Add functionality to hiera to query metadata
+Create a REST API layer on top of existing hiera
+This option involves less work
+Create a replacement for hiera completely that provides a REST API as well
+
+Add functionality
+Add REST API layer
+Replace hiera
+Option 3 is the most proper solution, but it brings a lot of challenges with it
+
 
 # get all hiera backends 
 hiera/backend/get/all

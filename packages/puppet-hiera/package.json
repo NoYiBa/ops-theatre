@@ -1,0 +1,14 @@
+{
+  "name": "puppet-hiera",
+  "version": "0.0.1",
+  "description": "Module to interface with a hiera database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "js-yaml": "^3.0.2"
+  },
+  "author": "",
+  "license": "ISC"
+}
