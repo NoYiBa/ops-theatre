@@ -4,6 +4,7 @@ var express = require('express');
 var puppetHiera = require('puppet-hiera');
 var puppetFacter = require('puppet-facter');
 var puppetDB = require('puppet-puppetdb');
+var config = require('./config.json');
 
 var app = express();
 
@@ -20,18 +21,18 @@ app.get('/', function(req, res){
 
 // Get all hiera hierarchies
 app.get('/hiera/hierarchies', function(req, res){
-  res.send(puppetHiera.getHieraHierarchies('/Users/walterheck/Source/perconalive-2014/hiera.yaml'));
+  res.send(puppetHiera.getHieraHierarchies(config.hiera.configfile));
 });
 
 // Get all hiera backends
 app.get('/hiera/backends', function(req, res){
-  res.send(puppetHiera.getHieraBackends('/Users/walterheck/Source/perconalive-2014/hiera.yaml'));
+  res.send(puppetHiera.getHieraBackends(config.hiera.configfile));
 });
 
 // get the configuration for a specific hiera backend
 app.get('/hiera/backendconfig/:backend', function(req, res){
   var backend = req.params.backend;
-  res.send(puppetHiera.getHieraBackendConfig('/Users/walterheck/Source/perconalive-2014/hiera.yaml', backend));
+  res.send(puppetHiera.getHieraBackendConfig(config.hiera.configfile, backend));
 });
 
 // Get all facts from the server. Set :names to 'names' in order to retrieve 
@@ -56,5 +57,5 @@ app.get('/puppetdb/nodes/all', function(req, res){
   res.send(puppetDB.getNodesAll());
 });
 
-app.listen(3000);
+app.listen(config.listen_port);
 
