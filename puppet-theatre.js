@@ -74,5 +74,14 @@ app.get('/puppetdb/nodes/:node/facts', function(req, res){
     });
 });
 
+// Get all values for a specific fact known to puppetdb
+app.get('/puppetdb/facts/:fact', function(req, res){
+  var fact = req.params.fact;
+  puppetDB.getAllFactValues(config.puppetdb, fact, function(error, data) {
+      res.send(data);
+    });
+});
+
+
 app.listen(config.listen_port);
 

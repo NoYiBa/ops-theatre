@@ -40,6 +40,11 @@ var getAllFactNames = function(connection, callback) {
   return puppetDBQuery('fact-names', connection, callback);
 }
 
-exports.getAllFactNames = getAllFactNames;
-exports.getAllNodes     = getAllNodes;
-exports.getNodeFacts    = getNodeFacts;
+var getAllFactValues = function(connection, factname, callback) {
+  return puppetDBQuery('facts/' + factname, connection, callback);
+}
+
+exports.getAllFactNames   = getAllFactNames;
+exports.getAllFactValues  = getAllFactValues;
+exports.getAllNodes       = getAllNodes;  
+exports.getNodeFacts      = getNodeFacts; 
