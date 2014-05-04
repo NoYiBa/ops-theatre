@@ -1,11 +1,8 @@
 var yaml    = require('js-yaml');
 var fs      = require('fs');
-var facter  = require('puppet-facter');
 
 var getHieraConfig = function(hieraConfigFile) {
-  
   return(yaml.safeLoad(fs.readFileSync(hieraConfigFile, 'utf8')));
-
 }
 
 var getHieraHierarchies = function(hieraConfigFile) {
