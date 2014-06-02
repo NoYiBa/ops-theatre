@@ -9,7 +9,14 @@
   "keywords": [
     "puppet-theatre"
   ],
-  "author": "Walter Heck",
+  "author": {
+    "name": "Walter Heck",
+    "email": "walterheck@olindata.com"
+  },
+  "contributors": [ {
+    "name": "Raj Kissu Rajandran",
+    "email": "raj@olindata.com"
+  } ],
   "license": "ISC",
   "dependencies": {
     "express": "^4.1.1"
