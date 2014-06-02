@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "REST API interface for Hiera",
   "main": "puppet-theatre.js",
+  "private" : true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,6 +20,7 @@
   } ],
   "license": "ISC",
   "dependencies": {
-    "express": "^4.1.1"
+    "express": "^4.1.1",
+    "puppet-facter": "*"
   }
 }
