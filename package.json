@@ -1,6 +1,6 @@
 {
   "name": "puppet-theatre",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "REST API interface for Hiera",
   "main": "puppet-theatre.js",
   "private" : true,
@@ -21,6 +21,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.1.1",
-    "puppet-facter": "*"
+    "puppet-facter": "^0.0.1",
+    "puppet-hiera": "~0.0.2",
+    "puppet-puppetdb": "^0.0.1"
   }
 }
