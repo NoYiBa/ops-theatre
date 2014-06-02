@@ -82,6 +82,6 @@ app.get('/puppetdb/facts/:fact', function(req, res){
     });
 });
 
-
-app.listen(config.listen_port);
-
+app.listen(config.listen_port, function () {
+    console.log("Listening on http://localhost:%s", config.listen_port);
+});
