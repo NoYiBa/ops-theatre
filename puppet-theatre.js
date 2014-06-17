@@ -37,9 +37,8 @@ app.get('/hiera/backendconfig/:backend', function(req, res){
 
 // Get all facts from the server. Set :names to 'names' in order to retrieve 
 // just fact names without values
-app.get('/facter/all/:names', function(req, res, next){
-    var namesOnly = req.params.names == 'names';
-    puppetFacter.getFacts(namesOnly, function(err, data) {
+app.get('/facter', function(req, res, next){
+    puppetFacter.getFacts(false, function(err, data) {
       res.send(data);
     });  
 });
@@ -47,13 +46,14 @@ app.get('/facter/all/:names', function(req, res, next){
 // Get a specific fact from facter.
 app.get('/facter/:fact', function(req, res, next){
   var fact = req.params.fact;
+
   puppetFacter.getFact(fact, function(err, data) {
     res.send(data);
   });  
 });
 
 // Get a list of nodes known to puppetdb
-app.get('/puppetdb/nodes/all', function(req, res){
+app.get('/puppetdb/nodes', function(req, res){
   puppetDB.getAllNodes(config.puppetdb, function(error, data) {
       res.send(data);
     });
@@ -84,4 +84,4 @@ app.get('/puppetdb/facts/:fact', function(req, res){
 
 app.listen(config.listen_port, function () {
     console.log("Listening on http://localhost:%s", config.listen_port);
-};
+});
