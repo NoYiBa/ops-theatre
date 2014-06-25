@@ -1,0 +1,27 @@
+{
+  "name": "puppet-theatre",
+  "main": "puppet-theatre.js",
+  "version": "0.0.5",
+  "homepage": "https://github.com/olindata/puppet-theatre",
+  "authors": [
+    "Raj Kissu <rajkissu@gmail.com>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/js/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-bootstrap": "~0.11.0",
+    "angular-ui-ace": "~0.1.1",
+    "angular-route": "~1.2.18"
+  }
+}

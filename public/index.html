@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ptApp">
+    <head>
+        <meta charset="utf8">
+
+        <title>Puppet Theatre</title>
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+
+        <script src="js/components/angular/angular.min.js"></script>
+        <script src="js/components/angular-route/angular-route.min.js"></script>
+        <script src="js/components/angular-bootstrap/ui-bootstrap.min.js"></script>
+        <script src="js/components/ace-builds/src-min-noconflict/ace.js"></script>
+        <script src="js/components/angular-ui-ace/ui-ace.js"></script>
+
+        <script src="js/pt-app.js"></script>
+        <script src="js/controllers/hiera.js"></script>
+        <script src="js/controllers/manifest.js"></script>
+        <script src="js/controllers/login.js"></script>
+
+        <style>
+            .ace_editor { height: 200px; }
+        </style>
+    </head>
+
+    <body ng-view></body>
+</html>
