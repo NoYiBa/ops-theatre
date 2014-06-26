@@ -1,6 +1,7 @@
 'use strict';
 
 var path = require('path');
+var fs = require('fs');
 var express = require('express');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -89,6 +90,14 @@ app.get('/puppetdb/facts/:fact', function (req, res) {
 });
 
 app.get('/manifests/:filename', function (req, res) {
+    var filename = req.params.filename;
+
+    fs.readFile(config.manifestsdir + '/' + filename, 'utf8', function (err, data) {
+        res.send({
+            filename : filename,
+            data     : data
+        });
+    });
 });
 
 app.listen(config.listen_port, function () {
