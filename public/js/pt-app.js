@@ -6,7 +6,7 @@ ptApp.config([ '$routeProvider', function ($routeProvider) {
             templateUrl : 'partials/hiera.html',
             controller  : 'HieraCtrl'
         }).
-        when('/manifest/:filename', {
+        when('/manifests/:filename', {
             templateUrl : 'partials/manifest.html',
             controller  : 'ManifestCtrl'
         }).
