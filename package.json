@@ -6,7 +6,7 @@
   "bin": "server.js",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -26,17 +26,21 @@
   "dependencies": {
     "body-parser": "^1.4.3",
     "cookie-parser": "^1.3.1",
+    "loopback": "1.x >=1.7.0",
+    "loopback-component-passport": "^1.0.4",
+    "passport-github": "^0.1.5",
+    "passport-google-oauth": "^0.1.5",
     "puppet-facter": "^0.0.2",
     "puppet-hiera": "~0.0.2",
-    "puppet-puppetdb": "^0.0.2",
-    "loopback": "1.x >=1.7.0"
+    "puppet-puppetdb": "^0.0.2"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
-    "grunt-loopback-angular": "^1.1.0"
+    "grunt-loopback-angular": "^1.1.0",
+    "loopback-explorer": "^1.1.1"
   },
   "optionalDependencies": {
     "loopback-explorer": "~1.1.0",
     "loopback-push-notification": "~1.2.0"
-  },
+  }
 }
