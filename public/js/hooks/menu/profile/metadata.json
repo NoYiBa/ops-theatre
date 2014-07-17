@@ -1,0 +1,10 @@
+{
+    "name" : "profile",
+    "title" : "Profile",
+    "routes": {
+      "/" : { 
+        "controller" : "ProfileCtrl",
+        "template"   : "profile.html"
+      }
+    }
+}

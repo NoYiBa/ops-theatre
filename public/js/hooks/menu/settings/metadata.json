@@ -1,0 +1,10 @@
+{
+    "name" : "settings",
+    "title" : "Settings",
+    "routes": {
+      "/" : { 
+        "controller" : "SettingsCtrl",
+        "template"   : "settings.html"
+      }
+    }
+}

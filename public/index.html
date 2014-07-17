@@ -20,9 +20,12 @@
         <script src="js/components/angular-ui-ace/ui-ace.js"></script>
 
         <script src="js/pt-app.js"></script>
+        <script src="js/services/hook.js"></script>
         <script src="js/controllers/hiera.js"></script>
         <script src="js/controllers/manifest.js"></script>
         <script src="js/controllers/login.js"></script>
+        <script src="js/controllers/menu.js"></script>
+        <script src="js/controllers/nav.js"></script>
 
         <style>
             .ace_editor { height: 200px; }
@@ -37,12 +40,14 @@
 
     <body>
 
-      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-include="'partials/top-navbar.html'">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation"
+          ng-include="'partials/menu.html'">
       </div>
 
       <div class="container-fluid">
         <div class="row">
-          <div class="col-sm-3 col-md-2 sidebar" ng-include="'partials/left-navbar.html'">
+          <div class="col-sm-3 col-md-2 sidebar"
+              ng-include="'partials/nav.html'">
           </div>
           <!--MAIN PAGE CONTENT -->
           <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-view>
@@ -55,7 +60,7 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
       <!-- Include all compiled plugins (below), or include individual files as needed -->
       <script src="js/bootstrap.min.js"></script>
-      <script src="js/docs.min.js"></script>
+      <!--<script src="js/docs.min.js"></script>-->
 
     </body>
 </html>

@@ -11,5 +11,5 @@
     "apiversion": "v3",
     "usessl": false
   },
-  "manifestsdir": "./manifests"
+  "manifestsDir": "./manifests"
 }

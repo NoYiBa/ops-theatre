@@ -1,0 +1,10 @@
+{
+    "name" : "dashboard",
+    "title" : "Dashboard",
+    "routes": {
+      "/" : { 
+        "controller" : "DashboardCtrl",
+        "template"   : "dashboard.html"
+      }
+    }
+}
