@@ -1,0 +1,2 @@
+ptApp.controller('ProfileCtrl', function () {
+});

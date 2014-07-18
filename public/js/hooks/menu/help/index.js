@@ -1,0 +1,2 @@
+ptApp.controller('HelpCtrl', function () {
+});

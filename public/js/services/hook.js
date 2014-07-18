@@ -9,24 +9,24 @@ ptApp.factory('hook', function ($http) {
     var uri = '/ui/hooks/' + type;
 
     $http.get(uri).success(function (modules) {
-      modules.forEach(function (module) {
-        loadHook(type, module, name);
-      });
+      modules.forEach(loadHook);
     });
   }
 
   // load a specific type of hook
-  function loadHook(type, module, name) {
-    var hookUri = '/js/hooks/' + type + '/' + name;
-
-    // load metadata
-    loadMetadata(module + '/metadata.json');
+  function loadHook(module) {
+    var uri = module.uri;
 
     // load the default controller
-    loadController(module + '/index.js');
+    loadController(uri + '/index.js');
+
+    // load metadata
+    loadMetadata(module);
   }
 
-  function loadMetadata(metadata) {
+  function loadMetadata(module) {
+    var metadata = module.uri + '/metadata.json';
+
     $http.get(metadata).success(function (response) {
       var data = {
         title : response.title,
@@ -34,9 +34,13 @@ ptApp.factory('hook', function ($http) {
       };
 
       // setup routes
-      ptApp.routeProvider.when('/dashboard', {
-        templateUrl : '/js/hooks/menu/dashboard/templates/dashboard.html',
-        // controller : 'DashboardCtrl'
+      Object.each(response.routes, function (route, config) {
+        var uri = ('/' + module.name + route).remove(/\/$/);
+
+        ptApp.routeProvider.when(uri, {
+          templateUrl : module.uri + '/templates/' + config.template,
+          controller  : config.controller
+        });
       });
     });
   }

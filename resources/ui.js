@@ -92,8 +92,8 @@ function get(req, res) {
 }
 
 // return all modules for a given hook
-function getHook(hook, cb) {
-  var thisHookDir = hooksDir + '/' + hook;
+function getHook(type, cb) {
+  var thisHookDir = hooksDir + '/' + type;
 
   fs.readdir(thisHookDir, function (err, files) {
     if (err) {
@@ -122,6 +122,7 @@ function getHook(hook, cb) {
         return file.stats.isDirectory();
       }).map(function (dir) {
         return {
+          type : type,
           name : path.basename(dir.filename),
           uri  : dir.filename.remove(publicDir) // remove the publicDir path
         };
