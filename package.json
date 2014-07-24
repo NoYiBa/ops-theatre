@@ -34,7 +34,8 @@
     "puppet-facter": "^0.0.2",
     "puppet-hiera": "~0.0.2",
     "puppet-puppetdb": "^0.0.2",
-    "sugar": "^1.4.1"
+    "sugar": "^1.4.1",
+    "yamljs": "^0.1.5"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

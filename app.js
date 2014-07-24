@@ -1,11 +1,13 @@
 'use strict';
 
+// needed for some in-house modules and libraries
+require('sugar');
+
 var path = require('path');
 var loopback = require('loopback');
 var resources = require('./lib/resources');
 var passport = require('./lib/passport');
 var app = module.exports = loopback();
-
 
 // Configure LoopBack models and datasources
 // Read more at http://apidocs.strongloop.com/loopback#appbootoptions

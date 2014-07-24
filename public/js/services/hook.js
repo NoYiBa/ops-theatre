@@ -6,7 +6,7 @@ ptApp.factory('hook', function ($http) {
   // TODO: cache hooks
   // TODO: load hooks at start of app configuration
   function loadAll(type) {
-    var uri = '/ui/hooks/' + type;
+    var uri = '/hooks/' + type;
 
     $http.get(uri).success(function (modules) {
       modules.forEach(loadHook);
@@ -18,7 +18,7 @@ ptApp.factory('hook', function ($http) {
     var uri = module.uri;
 
     // load the default controller
-    loadController(uri + '/index.js');
+    loadController(module);
 
     // load metadata
     loadMetadata(module);
@@ -34,18 +34,24 @@ ptApp.factory('hook', function ($http) {
       };
 
       // setup routes
-      Object.each(response.routes, function (route, config) {
-        var uri = ('/' + module.name + route).remove(/\/$/);
+      setupRoutes(modules, routes);
+    });
+  }
 
-        ptApp.routeProvider.when(uri, {
-          templateUrl : module.uri + '/templates/' + config.template,
-          controller  : config.controller
-        });
+  function setupRoutes(module, routes) {
+    Object.each(response.routes, function (route, config) {
+      var uri = ('/' + module.name + route).remove(/\/$/);
+
+      ptApp.routeProvider.when(uri, {
+        templateUrl : module.uri + '/templates/' + config.template,
+        controller  : config.controller
       });
     });
   }
 
-  function loadController(controller) {
+  function loadController(module) {
+    var controller = module.uri + '/index.js';
+
     $http.get(controller).success(function (response) {
       var script = document.createElement('script');
       script.src = 'data:text/javascript,' + encodeURI(response);
