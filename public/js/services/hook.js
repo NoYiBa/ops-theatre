@@ -1,6 +1,6 @@
 'use strict';
 
-ptApp.factory('hook', function ($http) {
+app.factory('hook', function ($http) {
   // load all hooks for a given type
   // TODO: support callbacks
   // TODO: cache hooks
@@ -42,7 +42,7 @@ ptApp.factory('hook', function ($http) {
     Object.each(response.routes, function (route, config) {
       var uri = ('/' + module.name + route).remove(/\/$/);
 
-      ptApp.routeProvider.when(uri, {
+      app.routeProvider.when(uri, {
         templateUrl : module.uri + '/templates/' + config.template,
         controller  : config.controller
       });

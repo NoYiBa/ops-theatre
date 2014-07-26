@@ -1,0 +1,14 @@
+{
+  "name": "Manifests",
+  "routes": {
+    "GET /:filename" : "index.get"
+  },
+  "ui": {
+    "routes": {
+      "/" : { 
+        "controller" : "ManifestCtrl",
+        "template"   : "index.html"
+      }
+    }
+  }
+}

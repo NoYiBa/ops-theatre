@@ -1,0 +1,11 @@
+{
+  "name": "Profile",
+  "ui": {
+    "routes": {
+      "/" : { 
+        "controller" : "ProfileCtrl",
+        "template"   : "index.html"
+      }
+    }
+  }
+}

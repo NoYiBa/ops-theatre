@@ -3,7 +3,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     loopback_angular: {
       options: {
-        input: 'puppet-theatre.js',
+        input: 'app.js',
         output: 'public/js/lb-services.js'
       }
     }

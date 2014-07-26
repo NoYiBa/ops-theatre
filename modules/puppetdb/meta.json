@@ -1,0 +1,17 @@
+{
+  "name": "PuppetDB",
+  "routes": {
+    "GET /nodes"             : "index.getNodes",
+    "GET /nodes/:node/facts" : "index.getNodeFacts",
+    "GET /fact-names"        : "index.getFactNames",
+    "GET /facts/:fact"       : "index.getFact"
+  },
+  "ui": {
+    "routes": {
+      "/" : { 
+        "controller" : "ProfileCtrl",
+        "template"   : "index.html"
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Settings",
+    "ui": {
+      "routes": {
+        "/" : { 
+          "controller" : "SettingsCtrl",
+          "template"   : "index.html"
+        }
+      }
+    }
+}

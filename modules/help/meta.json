@@ -1,0 +1,11 @@
+{
+  "name": "Help",
+  "ui": {
+    "routes": {
+      "/" : { 
+        "controller" : "HelpCtrl",
+        "template"   : "index.html"
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "Dashboard",
+  "ui": {
+    "routes": {
+      "/" : { 
+        "controller" : "DashboardCtrl",
+        "template"   : "index.html"
+      }
+    }
+  }
+}
