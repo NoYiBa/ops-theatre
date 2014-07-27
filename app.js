@@ -59,37 +59,34 @@ modules.load(app, function (err) {
 
   app.use(loopback.static(path.join(__dirname, 'public')));
 
-  // mount module UIs
-  modules.mountUI(function () {
-    // Requests that get this far won't be handled
-    // by any middleware. Convert them into a 404 error
-    // that will be handled later down the chain.
-    app.use(loopback.urlNotFound());
+  // Requests that get this far won't be handled
+  // by any middleware. Convert them into a 404 error
+  // that will be handled later down the chain.
+  app.use(loopback.urlNotFound());
 
-    // The ultimate error handler.
-    app.use(loopback.errorHandler());
+  // The ultimate error handler.
+  app.use(loopback.errorHandler());
 
-    // Add a basic application status route at the root `/`.
-    // app.get('/', loopback.status());
+  // Add a basic application status route at the root `/`.
+  // app.get('/', loopback.status());
 
-    // Enable access control and token based authentication.
-    var swaggerRemote = app.remotes().exports.swagger;
-    if (swaggerRemote) swaggerRemote.requireToken = false;
+  // Enable access control and token based authentication.
+  var swaggerRemote = app.remotes().exports.swagger;
+  if (swaggerRemote) swaggerRemote.requireToken = false;
 
-    app.enableAuth();
+  app.enableAuth();
 
-    // Optionally start the server
-    // (only if this module is the main module)
-    app.start = function() {
-      return app.listen(function() {
-        var baseUrl = 'http://' + app.get('host') + ':' + app.get('port');
-        app.emit('started', baseUrl);
-        console.log('LoopBack server listening @ %s%s', baseUrl, '/');
-      });
-    };
+  // Optionally start the server
+  // (only if this module is the main module)
+  app.start = function() {
+    return app.listen(function() {
+      var baseUrl = 'http://' + app.get('host') + ':' + app.get('port');
+      app.emit('started', baseUrl);
+      console.log('LoopBack server listening @ %s%s', baseUrl, '/');
+    });
+  };
 
-    if(require.main === module) {
-      app.start();
-    }
-  });
+  if(require.main === module) {
+    app.start();
+  }
 });

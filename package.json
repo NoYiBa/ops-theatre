@@ -1,16 +1,15 @@
 {
-  "name": "puppet-theatre",
-  "version": "0.0.6",
-  "description": "REST API interface for Hiera",
+  "name": "ops-theatre",
+  "version": "0.0.7",
+  "description": "Ops Theatre management tool",
   "main": "app.js",
-  "bin": "server.js",
   "private": true,
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "puppet-theatre"
+    "ops-theatre"
   ],
   "author": {
     "name": "Walter Heck",

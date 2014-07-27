@@ -4,13 +4,5 @@
     "GET /hierarchies"        : "index.getHierarchyAll",
     "GET /backends"           : "index.getBackendAll",
     "GET /backends/:backends" : "index.getBackend"
-  },
-  "ui" : {
-    "routes": {
-      "/" : { 
-        "controller" : "HieraCtrl",
-        "template"   : "index.html"
-      }
-    }
   }
 }

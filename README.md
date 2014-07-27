@@ -1,6 +1,6 @@
-puppet-theatre
+ops-theatre
 ==============
 
-Puppet Theatre management tool
+Ops Theatre management tool
 
 This tool will alow you to edit and use puppet in large environments  

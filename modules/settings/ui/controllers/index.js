@@ -1,2 +1,0 @@
-ptApp.controller('SettingsCtrl', function () {
-});
