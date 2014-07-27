@@ -1,15 +1,15 @@
 'use strict';
 
-app.factory('hook', function ($http) {
-  // load all hooks for a given type
+app.factory('module', function ($http) {
+  // load all modules
   // TODO: support callbacks
   // TODO: cache hooks
   // TODO: load hooks at start of app configuration
   function loadAll(type) {
-    var uri = '/hooks/' + type;
+    var uri = '/modules/' + type;
 
     $http.get(uri).success(function (modules) {
-      modules.forEach(loadHook);
+      modules.forEach(loadModule);
     });
   }
 
@@ -25,6 +25,7 @@ app.factory('hook', function ($http) {
   }
 
   function loadMetadata(module) {
+    return;
     var metadata = module.uri + '/metadata.json';
 
     $http.get(metadata).success(function (response) {
@@ -39,6 +40,7 @@ app.factory('hook', function ($http) {
   }
 
   function setupRoutes(module, routes) {
+    return;
     Object.each(response.routes, function (route, config) {
       var uri = ('/' + module.name + route).remove(/\/$/);
 
@@ -50,6 +52,7 @@ app.factory('hook', function ($http) {
   }
 
   function loadController(module) {
+    return;
     var controller = module.uri + '/index.js';
 
     $http.get(controller).success(function (response) {
