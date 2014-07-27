@@ -1,6 +1,6 @@
 {
   "name": "puppet-theatre",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "REST API interface for Hiera",
   "main": "app.js",
   "bin": "server.js",

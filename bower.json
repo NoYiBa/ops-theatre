@@ -1,7 +1,7 @@
 {
   "name": "puppet-theatre",
   "main": "app.js",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "homepage": "https://github.com/olindata/puppet-theatre",
   "authors": [
     "Raj Kissu <rajkissu@gmail.com>"
