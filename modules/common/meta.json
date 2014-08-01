@@ -1,9 +1,0 @@
-{
-  "name": "Common",
-  "routes": {
-    "GET /modules"         : "index.getAll",
-    "GET /modules/:module" : "index.get",
-    "GET /hooks"           : "index.getAllHooks",
-    "GET /hooks/:hook"     : "index.getHook"
-  }
-}

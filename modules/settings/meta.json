@@ -1,0 +1,7 @@
+{
+  "name": "Settings",
+  "routes": {
+    "GET /"        : "index.getAll",
+    "GET /:module" : "index.get"
+  }
+}

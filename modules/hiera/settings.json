@@ -1,0 +1,21 @@
+{
+  "settings1" : {
+    "name" : "Hiera 1",
+    "type" : "string"
+  },
+
+  "settings2" : {
+    "name" : "Hiera 2",
+    "type" : "number"
+  },
+
+  "settings3" : {
+    "name" : "Hiera 3",
+    "type" : "number"
+  },
+
+  "settings4" : {
+    "name" : "Hiera 4",
+    "type" : "number"
+  }
+}

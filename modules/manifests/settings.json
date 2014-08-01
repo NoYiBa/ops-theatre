@@ -1,0 +1,11 @@
+{
+  "settings1" : {
+    "name" : "Manifest 1",
+    "type" : "string"
+  },
+
+  "settings2" : {
+    "name" : "Manifest 2",
+    "type" : "number"
+  }
+}

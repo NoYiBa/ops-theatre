@@ -68,7 +68,7 @@ modules.load(app, function (err) {
   app.use(loopback.errorHandler());
 
   // Add a basic application status route at the root `/`.
-  // app.get('/', loopback.status());
+  app.get('/', loopback.status());
 
   // Enable access control and token based authentication.
   var swaggerRemote = app.remotes().exports.swagger;
