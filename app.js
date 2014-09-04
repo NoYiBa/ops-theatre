@@ -35,20 +35,6 @@ modules.load(app, function (err) {
   // LoopBack REST interface
   app.use(app.get('restApiRoot'), loopback.rest());
 
-  // API explorer (if present)
-  // TODO: enable this only in debug mode?
-  try {
-    var explorer = require('loopback-explorer')(app);
-    app.use('/explorer', explorer);
-    app.once('started', function(baseUrl) {
-      console.log('Browse your REST API at %s%s', baseUrl, explorer.route);
-    });
-  } catch(e){
-    console.log(
-      'Run `npm install loopback-explorer` to enable the LoopBack explorer'
-    );
-  }
-
   // Enable http session
   app.use(loopback.session({ secret: 'keyboard cat' }));
 
