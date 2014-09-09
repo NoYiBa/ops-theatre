@@ -1,8 +1,9 @@
 'use strict';
 
-var hiera, config;
+var fs, hiera, config;
 
-hiera = require('puppet-hiera');
+fs     = require('fs');
+hiera  = require('puppet-hiera');
 config = require(__dirname + '/../../app.json');
 
 module.exports = {
@@ -10,6 +11,8 @@ module.exports = {
   getHierarchy  : getHierarchy,
   getBackendAll : getBackendAll,
   getBackend    : getBackend,
+  getFiles      : getFiles,
+  getFile       : getFile,
   saveHiera     : saveHiera
 };
 
@@ -34,6 +37,27 @@ function getBackend(req, res) {
   res.send(hiera.getBackendConfig(config.hiera.configFile, backend));
 }
 
+// get a list of Hiera files
+function getFiles(req, res) {
+  var backend, files;
+
+  backend = req.params.backend;
+  files   = hiera.getFiles(config.hiera.configFile, backend);
+
+  res.send(files);
+}
+
+// get contents of a Hiera file for a specified backend
+function getFile(req, res) {
+  var backend, file;
+
+  backend = req.params.backend;
+  file    = hiera.getFile(config.hiera.configFile, backend, req.params[0]);
+
+  res.send(file);
+}
+
+// persist hiera config file
 function saveHiera(req, res) {
   var ret = hiera.saveConfig(config.hiera.configFile, req.body);
   res.send(200);

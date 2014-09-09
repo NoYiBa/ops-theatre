@@ -1,11 +1,13 @@
 {
   "name": "Hiera",
   "routes": {
-    "GET /"                  : "index.getHiera",
-    "GET /hierarchy"         : "index.getHierarchy",
-    "GET /backends"          : "index.getBackendAll",
-    "GET /backends/:backend" : "index.getBackend",
+    "GET /"                    : "index.getHiera",
+    "GET /hierarchy"           : "index.getHierarchy",
+    "GET /backends"            : "index.getBackendAll",
+    "GET /backends/:backend"   : "index.getBackend",
+    "GET /files/:backend/"     : "index.getFiles",
+    "GET /files/:backend/*"    : "index.getFile",
 
-    "POST /"                 : "index.saveHiera"
+    "POST /"                   : "index.saveHiera"
   }
 }

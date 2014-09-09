@@ -30,16 +30,17 @@ A user needs to be able to login with email + password and link a github usernam
 # High Level Requirements:
 
 1. Hiera editing
-2. Edit puppet manifests and modules in-place
-3. On-disk over in-database
-4. Role Based Access Control
-5. Monitoring and logging pushed to external systems
-6. Easily made Highly Available
-7. No reinventing the wheel
-8. "Continuous Integration" integration
-9. Foreman integration?
-10. Version control integration - initially git
-11. Support multiple puppet masters?
+2. Hiera debugging from UI (use `hiera -c`)
+3. Edit puppet manifests and modules in-place
+4. On-disk over in-database
+5. Role Based Access Control
+6. Monitoring and logging pushed to external systems
+7. Easily made Highly Available
+8. No reinventing the wheel
+9. "Continuous Integration" integration
+10. Foreman integration?
+11. Version control integration - initially git
+12. Support multiple puppet masters?
 
 
 1. Hiera editing
