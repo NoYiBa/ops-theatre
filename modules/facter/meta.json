@@ -1,7 +1,0 @@
-{
-  "name": "Facter",
-  "routes": {
-    "GET /"      : "index.getAll",
-    "GET /:fact" : "index.get"
-  }
-}

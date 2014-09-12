@@ -1,6 +1,0 @@
-{
-  "name": "Manifests",
-  "routes": {
-    "GET /:filename" : "index.get"
-  }
-}

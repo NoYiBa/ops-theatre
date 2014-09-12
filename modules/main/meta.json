@@ -1,7 +1,0 @@
-{
-  "name": "Main",
-  "routes": {
-    "GET /modules"         : "index.getAll",
-    "GET /modules/:module" : "index.get"
-  }
-}

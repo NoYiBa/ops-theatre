@@ -1,6 +1,0 @@
-{
-  "hiera-yaml-path" : {
-    "name" : "hiera.yaml Path",
-    "type" : "string"
-  }
-}
