@@ -1,6 +1,6 @@
 {
   "name": "ops-theatre",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Ops Theatre management tool",
   "main": "app.js",
   "private": true,
@@ -31,7 +31,7 @@
     "passport-github": "^0.1.5",
     "passport-google-oauth": "^0.1.5",
     "puppet-facter": "^0.0.2",
-    "puppet-hiera": "~0.0.7",
+    "puppet-hiera": "~0.0.8",
     "puppet-puppetdb": "^0.0.2",
     "sugar": "^1.4.1",
     "yamljs": "^0.1.5"

@@ -7,17 +7,18 @@ hiera  = require('puppet-hiera');
 config = require(__dirname + '/../../app.json');
 
 module.exports = {
-  getHiera      : getHiera,
+  getConfig     : getConfig,
   getHierarchy  : getHierarchy,
   getBackendAll : getBackendAll,
   getBackend    : getBackend,
   getFiles      : getFiles,
   getFile       : getFile,
-  saveHiera     : saveHiera
+  saveConfig    : saveConfig,
+  saveFile      : saveFile
 };
 
 // get the entire hiera configuration
-function getHiera(req, res) {
+function getConfig(req, res) {
   res.send(hiera.getConfig(config.hiera.configFile));
 }
 
@@ -39,12 +40,11 @@ function getBackend(req, res) {
 
 // get a list of Hiera files
 function getFiles(req, res) {
-  var backend, files;
+  var backend = req.params.backend;
 
-  backend = req.params.backend;
-  files   = hiera.getFiles(config.hiera.configFile, backend);
-
-  res.send(files);
+  hiera.getFiles(config.hiera.configFile, backend, function (err, files) {
+    res.send(files);
+  });
 }
 
 // get contents of a Hiera file for a specified backend
@@ -58,7 +58,24 @@ function getFile(req, res) {
 }
 
 // persist hiera config file
-function saveHiera(req, res) {
+function saveConfig(req, res) {
   var ret = hiera.saveConfig(config.hiera.configFile, req.body);
   res.send(200);
+}
+
+// savve contents to a Hiera file for a specified backend
+function saveFile(req, res) {
+  var backend, data;
+
+  backend = req.params.backend;
+  data    = req.body.data;
+
+  hiera.saveFile(config.hiera.configFile, backend, req.params[0], data, function (err) {
+    if (err) {
+      // TODO: send error code
+      throw err;
+    }
+
+    res.send(200);
+  });
 }
