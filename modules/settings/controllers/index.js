@@ -5,8 +5,8 @@ var fs, path, async, common, modules;
 fs      = require('fs');
 path    = require('path');
 async   = require('async');
-common  = require('../../lib/common');
-modules = require('../../lib/modules');
+common  = require('../../../lib/common');
+modules = require('../../../lib/modules');
 
 module.exports = {
   getAll : getAll,
