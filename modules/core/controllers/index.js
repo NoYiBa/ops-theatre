@@ -1,12 +1,11 @@
 'use strict';
 
-var fs, path, async, common, modules;
+var fs, path, async, modules;
 
-fs         = require('fs');
-path       = require('path');
-async      = require('async');
-common     = require('../../lib/common');
-modules = require('../../lib/modules');
+fs      = require('fs');
+path    = require('path');
+async   = require('async');
+modules = require('../../../lib/modules');
 
 module.exports = {
   getAll : getAll,

@@ -1,9 +1,6 @@
 'use strict';
 
-var fs, puppetDB;
-
-fs       = require('fs');
-puppetDB = require('puppet-puppetdb');
+var puppetDB = require('puppet-puppetdb');
 
 module.exports = {
   getNodes     : getNodes,

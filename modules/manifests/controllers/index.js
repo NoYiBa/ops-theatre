@@ -3,7 +3,7 @@
 var fs, config;
 
 fs     = require('fs');
-config = require(__dirname + '/../../app.json');
+config = require('../../../app.json');
 
 module.exports = {
   get : get

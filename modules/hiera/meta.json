@@ -3,12 +3,13 @@
   "routes": {
     "GET /"                    : "index.getConfig",
     "GET /hierarchy"           : "index.getHierarchy",
-    "GET /backends"            : "index.getBackendAll",
-    "GET /backends/:backend"   : "index.getBackend",
-    "GET /files/:backend/"     : "index.getFiles",
-    "GET /files/:backend/*"    : "index.getFile",
-
     "POST /"                   : "index.saveConfig",
-    "POST /files/:backend/*"   : "index.saveFile"
+
+    "GET /backends"            : "backend.getAll",
+    "GET /backends/:backend"   : "backend.get",
+
+    "GET /files/:backend"      : "file.getAll",
+    "GET /files/:backend/*"    : "file.get",
+    "POST /files/:backend/*"   : "file.save"
   }
 }

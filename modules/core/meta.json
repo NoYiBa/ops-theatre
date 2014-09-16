@@ -1,5 +1,5 @@
 {
-  "name": "Main",
+  "name": "Core",
   "routes": {
     "GET /modules"         : "index.getAll",
     "GET /modules/:module" : "index.get"
