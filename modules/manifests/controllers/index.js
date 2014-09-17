@@ -39,4 +39,19 @@ function get(req, res) {
 }
 
 function save(req, res) {
+  var filename, filepath, data;
+
+  filename = req.params[0];
+  filepath = config.manifestsDir + '/' + filename;
+  data     = req.body.data;
+
+  fs.writeFile(filepath, data, 'utf8', function (err) {
+    if (err) {
+      res.status(500);
+      res.send(err);
+      return;
+    }
+
+    res.send(200);
+  });
 }

@@ -11,6 +11,19 @@ modules  = require('./lib/modules');
 passport = require('./lib/passport');
 app      = module.exports = loopback();
 
+// Configure LoopBack models and datasources
+// Read more at http://apidocs.strongloop.com/loopback#appbootoptions
+app.boot(__dirname);
+
+// Configure request preprocessing
+// LoopBack support all express-compatible middleware.
+app.use(loopback.favicon());
+app.use(loopback.logger(app.get('env') === 'development' ? 'dev' : 'default'));
+app.use(loopback.cookieParser(app.get('cookieSecret')));
+app.use(loopback.token({model: app.models.accessToken}));
+app.use(loopback.bodyParser());
+app.use(loopback.methodOverride());
+
 //Setup request handlers.
 // load modules
 modules.load(app, function (err) {
@@ -18,20 +31,6 @@ modules.load(app, function (err) {
     // TODO: handle this error
     throw err;
   }
-
-  // Configure LoopBack models and datasources
-  // Read more at http://apidocs.strongloop.com/loopback#appbootoptions
-  app.boot(__dirname);
-
-  // Configure request preprocessing
-  // LoopBack support all express-compatible middleware.
-  app.use(loopback.favicon());
-  app.use(loopback.logger(app.get('env') === 'development' ? 'dev' : 'default'));
-  app.use(loopback.cookieParser(app.get('cookieSecret')));
-  app.use(loopback.token({model: app.models.accessToken}));
-  app.use(loopback.bodyParser());
-  app.use(loopback.methodOverride());
-
   // LoopBack REST interface
   app.use(app.get('restApiRoot'), loopback.rest());
 
