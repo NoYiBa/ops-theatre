@@ -1,6 +1,8 @@
 {
   "name": "Manifests",
   "routes": {
-    "GET /:filename" : "index.get"
+    "GET /"   : "index.getAll",
+    "GET /*"  : "index.get",
+    "POST /*" : "index.save"
   }
 }

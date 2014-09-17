@@ -1,6 +1,6 @@
 {
   "name": "ops-theatre",
-  "version": "0.0.12",
+  "version": "0.0.14",
   "description": "Ops Theatre management tool",
   "main": "app.js",
   "private": true,

@@ -1,21 +1,42 @@
 'use strict';
 
-var fs, config;
+var fs, common, config;
 
 fs     = require('fs');
+common = require('../../../lib/common');
 config = require('../../../app.json');
 
 module.exports = {
-  get : get
+  getAll : getAll,
+  get    : get,
+  save   : save
 };
 
-function get(req, res) {
-  var filename = req.params.filename;
+function getAll(req, res) {
+  common.getFileTree(config.manifestsDir, function (err, files) {
+    if (err) {
+      res.status(500);
+      res.send(err);
+      return;
+    }
 
-  fs.readFile(config.manifestsDir + '/' + filename, 'utf8', function (err, data) {
+    res.send(files);
+  });
+}
+
+function get(req, res) {
+  var filename, filepath;
+
+  filename = req.params[0];
+  filepath = config.manifestsDir + '/' + filename;
+
+  fs.readFile(filepath, 'utf8', function (err, data) {
     res.send({
       filename : filename,
       data     : data
     });
   });
+}
+
+function save(req, res) {
 }
