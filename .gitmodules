@@ -1,0 +1,3 @@
+[submodule "frontends/angular"]
+	path = frontends/angular
+	url = git@github.com:olindata/ops-theatre-frontend.git
