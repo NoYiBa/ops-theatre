@@ -31,10 +31,13 @@ function get(req, res) {
   filepath = config.manifestsDir + '/' + filename;
 
   fs.readFile(filepath, 'utf8', function (err, data) {
-    res.send({
-      filename : filename,
-      data     : data
-    });
+    if (err) {
+      res.status(500);
+      res.send(err);
+      return;
+    }
+
+    res.send(data);
   });
 }
 
