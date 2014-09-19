@@ -11,7 +11,6 @@ modules = require('./lib/modules');
 config  = require('./config.json');
 app     = express();
 
-// Configure request preprocessing
 // support express-compatible middleware
 app.use(express.favicon());
 app.use(express.logger('dev'));
@@ -45,7 +44,7 @@ modules.load(app, function (err) {
   // Optionally start the server
   // (only if this module is the main module)
   if(require.main === module) {
-    http.createServer(app).listen(config.port, function(){
+    http.createServer(app).listen(config.port, config.host, function(){
       var baseUrl = [
         'http://', config.host, ':', config.port
       ].join('');
