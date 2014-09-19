@@ -3,26 +3,36 @@
 // needed for some in-house modules and libraries
 require('sugar');
 
-var path, loopback, modules, passport, app;
+var http, express, modules, config, app;
 
-path     = require('path');
-loopback = require('loopback');
-modules  = require('./lib/modules');
-passport = require('./lib/passport');
-app      = module.exports = loopback();
-
-// Configure LoopBack models and datasources
-// Read more at http://apidocs.strongloop.com/loopback#appbootoptions
-app.boot(__dirname);
+http    = require('http');
+express = require('express');
+modules = require('./lib/modules');
+config  = require('./config.json');
+app     = express();
 
 // Configure request preprocessing
-// LoopBack support all express-compatible middleware.
-app.use(loopback.favicon());
-app.use(loopback.logger(app.get('env') === 'development' ? 'dev' : 'default'));
-app.use(loopback.cookieParser(app.get('cookieSecret')));
-app.use(loopback.token({model: app.models.accessToken}));
-app.use(loopback.bodyParser());
-app.use(loopback.methodOverride());
+// support express-compatible middleware
+app.use(express.favicon());
+app.use(express.logger('dev'));
+app.use(express.cookieParser(config.cookieSecret));
+app.use(express.session({ secret: config.sessionSecret }));
+app.use(express.bodyParser());
+app.use(express.json());
+app.use(express.urlencoded());
+app.use(express.methodOverride());
+
+// enable cross-domain scripting
+// TODO: secure this with a whitelist of referrers?
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+
+  next();
+});
+
+app.use(app.router);
+app.use(express.errorHandler());
 
 //Setup request handlers.
 // load modules
@@ -31,47 +41,16 @@ modules.load(app, function (err) {
     // TODO: handle this error
     throw err;
   }
-  // LoopBack REST interface
-  app.use(app.get('restApiRoot'), loopback.rest());
-
-  // Enable http session
-  app.use(loopback.session({ secret: 'keyboard cat' }));
-
-  // setup loopback-passport
-  passport(app);
-
-  app.use(app.router);
-
-  app.use(loopback.static(path.join(__dirname, 'public')));
-
-  // Requests that get this far won't be handled
-  // by any middleware. Convert them into a 404 error
-  // that will be handled later down the chain.
-  app.use(loopback.urlNotFound());
-
-  // The ultimate error handler.
-  app.use(loopback.errorHandler());
-
-  // Add a basic application status route at the root `/`.
-  app.get('/', loopback.status());
-
-  // Enable access control and token based authentication.
-  var swaggerRemote = app.remotes().exports.swagger;
-  if (swaggerRemote) swaggerRemote.requireToken = false;
-
-  app.enableAuth();
 
   // Optionally start the server
   // (only if this module is the main module)
-  app.start = function() {
-    return app.listen(function() {
-      var baseUrl = 'http://' + app.get('host') + ':' + app.get('port');
-      app.emit('started', baseUrl);
-      console.log('LoopBack server listening @ %s%s', baseUrl, '/');
-    });
-  };
-
   if(require.main === module) {
-    app.start();
+    http.createServer(app).listen(config.port, function(){
+      var baseUrl = [
+        'http://', config.host, ':', config.port
+      ].join('');
+
+      console.log('OpsTheatre API server listening @ %s%s', baseUrl, '/');
+    });
   }
 });

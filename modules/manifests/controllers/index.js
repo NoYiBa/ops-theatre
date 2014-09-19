@@ -4,7 +4,7 @@ var fs, common, config;
 
 fs     = require('fs');
 common = require('../../../lib/common');
-config = require('../../../app.json');
+config = require('../../../config.json');
 
 module.exports = {
   getAll : getAll,

@@ -1,16 +1,28 @@
 'use strict';
 
-var fs, path, async, modules;
+var modules, _start;
 
-fs      = require('fs');
-path    = require('path');
-async   = require('async');
+require('sugar');
+
 modules = require('../../../lib/modules');
 
 module.exports = {
+  uptime : uptime,
   getAll : getAll,
   get    : get
 };
+
+// start time
+_start = Date.create();
+
+function uptime(req, res) {
+  var uptime = Date.create() - _start;
+
+  res.send({
+    start  : _start.toISOString(),
+    uptime : (uptime / 1000) + ' seconds'
+  });
+}
 
 // retrieve all modules
 function getAll(req, res) {

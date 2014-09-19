@@ -3,7 +3,7 @@
 var hiera, config;
 
 hiera  = require('puppet-hiera');
-config = require('../../../app.json');
+config = require('../../../config.json');
 
 module.exports = {
   getAll : getAll,
