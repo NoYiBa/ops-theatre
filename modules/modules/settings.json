@@ -1,0 +1,11 @@
+{
+  "settings1" : {
+    "name" : "Module 1",
+    "type" : "string"
+  },
+
+  "settings2" : {
+    "name" : "Module 2",
+    "type" : "number"
+  }
+}

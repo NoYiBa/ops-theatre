@@ -13,7 +13,7 @@ module.exports = {
 };
 
 function getAll(req, res) {
-  common.getFileTree(config.manifests.dir, function (err, files) {
+  common.getFileTree(config.modules.dir, function (err, files) {
     if (err) {
       res.status(500);
       res.send(err);
@@ -28,7 +28,7 @@ function get(req, res) {
   var filename, filepath;
 
   filename = req.params[0];
-  filepath = config.manifests.dir + '/' + filename;
+  filepath = config.modules.dir + '/' + filename;
 
   fs.readFile(filepath, 'utf8', function (err, data) {
     if (err) {
@@ -45,7 +45,7 @@ function save(req, res) {
   var filename, filepath, data;
 
   filename = req.params[0];
-  filepath = config.manifests.dir + '/' + filename;
+  filepath = config.modules.dir + '/' + filename;
   data     = req.body.data;
 
   fs.writeFile(filepath, data, 'utf8', function (err) {

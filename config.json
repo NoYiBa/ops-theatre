@@ -6,11 +6,16 @@
   "hiera": {
     "configFile": "/etc/puppet/hiera.yaml"
   },
+  "manifests": {
+    "dir" : "/etc/puppet/manifests"
+  },
+  "modules": {
+    "dir" : "/etc/puppet/modules"
+  },
   "puppetdb": {
     "host": "192.168.56.20",
     "port": 8080,
     "apiversion": "v3",
     "usessl": false
-  },
-  "manifestsDir": "/etc/puppet/manifests"
+  }
 }

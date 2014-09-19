@@ -1,8 +1,8 @@
 {
   "name": "Core",
   "routes": {
-    "GET /"                : "index.uptime",
-    "GET /modules"         : "index.getAll",
-    "GET /modules/:module" : "index.get"
+    "GET /"                    : "index.uptime",
+    "GET /ops-modules"         : "index.getAll",
+    "GET /ops-modules/:module" : "index.get"
   }
 }
