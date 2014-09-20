@@ -2,9 +2,12 @@
   "name": "Core",
   "routes": {
     "GET /"                    : "index.uptime",
-    "GET /ops-modules"         : "index.getAll",
-    "GET /ops-modules/:module" : "index.get",
+    "GET /ops-modules"         : "opsModules.getAll",
+    "GET /ops-modules/:module" : "opsModules.get",
     "GET /settings"            : "settings.getAll",
-    "GET /settings/:module"    : "settings.get"
+    "GET /settings/:module"    : "settings.get",
+    "GET /login"               : "login.get",
+    "POST /login"              : "login.login",
+    "GET /logout"              : "login.logout"
   }
 }
