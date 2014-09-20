@@ -3,6 +3,8 @@
   "routes": {
     "GET /"                    : "index.uptime",
     "GET /ops-modules"         : "index.getAll",
-    "GET /ops-modules/:module" : "index.get"
+    "GET /ops-modules/:module" : "index.get",
+    "GET /settings"            : "settings.getAll",
+    "GET /settings/:module"    : "settings.get"
   }
 }
