@@ -5,3 +5,8 @@
 node_modules/
 bower_components/
 .*.sw*
+scripts/vagrant/.vagrant/machines/default/virtualbox/action_provision
+scripts/vagrant/.vagrant/machines/default/virtualbox/action_set_name
+scripts/vagrant/.vagrant/machines/default/virtualbox/id
+scripts/vagrant/.vagrant/machines/default/virtualbox/index_uuid
+scripts/vagrant/.vagrant/machines/default/virtualbox/synced_folders
