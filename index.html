@@ -1,76 +1,459 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="OpsTheatre : Operations management tool">
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
     <title>OpsTheatre</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font-awesome -->
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
   </head>
+  <body data-spy="scroll" data-target=".navbar">
+    <!-- NAVBAR -->
+    <nav id="navbar" class="navbar navbar-fixed-top navbar-default" role="navigation">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a href="https://github.com/olindata/ops-theatre"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".ot-navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="fa fa-bar"></span>
+            <span class="fa fa-bar"></span>
+            <span class="fa fa-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">OpsTheatre</a>
+        </div>
 
-  <body>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/olindata/ops-theatre">View on GitHub</a>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse ot-navbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="#header-section">Home</a></li>
+            <li><a href="#section-why">What?</a></li>
+            <li><a href="#section-why">Why?</a></li>
+            <li><a href="#section-how">How?</a></li>
+            <li><a href="#section-who">Who?</a></li>
+            <li><a href="#footer-section">Footer</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- / NAVBAR -->
 
-          <h1 id="project_title">OpsTheatre</h1>
-          <h2 id="project_tagline">Operations management tool</h2>
+     <!-- HEADER -->
+    <header id="header-section">
+      <div class="jumbotron text-center" style="background:#292C37;">
+        <div class="container">
+          <img class="img-thumbnail" src="images/hiera_frontend.png" alt="browser" style="margin-top:30px">
+          <div class="container pull-right" style="color:#fff">
+            <h3>The new standard for Operations GUI's</h3>
+            <p>Tired of logging into 27 dashboards just to see what's going on in your infrastructure?</p>
+            <p><a class="btn btn-primary btn-lg" href="#" title="">Let this be the last one!</a></p>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- / HEADER -->
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/olindata/ops-theatre/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/olindata/ops-theatre/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
+    <!--  SECTION-SUMMARY -->
+    <section id="section-summary">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-info text-center">
+            <i class="fa fa-mobile-phone fa-large fa-3x"></i>
+            <i class="fa fa-tablet fa-large fa-4x"></i>
+            <i class="fa fa-desktop fa-large fa-4x"></i>
+            <p>Multiple native frontends for different platforms (Coming soon!)</p>
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4  text-info text-center">
+            <i class="fa fa-info-circle fa-large fa-2x"></i>
+            <i class="fa fa-info-circle fa-large fa-3x"></i>
+            <i class="fa fa-info-circle fa-large fa-4x"></i>
+            <p>Designed to scale, it's usable in anything from really small to really large environments</p>
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-info text-center">
+            <ul class="list-unstyled fa-ul text-left" style="font-size:18px; line-height:30px;">
+              <li><i class="fa fa-li fa-check-square"></i>Online Puppet manifest editing </li>
+              <li><i class="fa fa-li fa-check-square"></i>Edit your Hiera data from the browser</li>
+              <li><i class="fa fa-li fa-check-square"></i>Version control support (coming soon)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-opstheatre" class="anchor" href="#welcome-to-opstheatre"><span class="octicon octicon-link"></span></a>Welcome to OpsTheatre.</h3>
+    <section id="section-what">
+      <div class="container">
+        <hr>
+        <div class="row">
+          <div class="page-header text-center">
+            <h2 class="text-info">WHAT?</h2>
+            <p class="lead">OpsTheatre is a modular app with a backend built in node.js. It's frontend is currently an angular app which talks to the backend through REST API's. Both the frontend and the backend support plugins or modules</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+    <section id="section-why">
+      <div class="container">
+        <hr>
+        <div class="row">
+          <div class="page-header text-center">
+            <h2 class="text-info">WHY?</h2>
+            <p class="lead">At <a href="http://olindata.com">OlinData</a> we do a lot of consulting for different clients. Each client uses some combination of dashboards for operations. Nagios, Puppet Enterprise, The Foreman, Kibana, etc. While things like OpenID and SSO are nice, they still don't prevent you from having to be logged into multiple different dashboards just to be able to manage a single infrastructure.</p>
+            <p class="lead"> OpsTheatre aims to solve that problem by implementing a standard API: OpsAPI. Any dashboard that supports OpsAPI can be easily hooked up to OpsTheatre. However, we want this to be widely adopted, so we encourage other dashboards to also support this API so we can standardise things across the board.</p>
+          </div>
+        </div>
+        <div class="row bg-shine">
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center text-info">
+            <i class="fa fa-git fa-large fa-2x"></i> <i class="fa fa-github-alt  fa-large fa-4x"></i>
+          </div>
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4   text-center text-info">
+            <i class="fa fa-upload fa-large fa-2x text-info"></i>
+            <i class="fa fa-group fa-large fa-4x text-info"></i>
+            <i class="fa fa-info-circle fa-large fa-2x"></i>
+          </div>
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center text-info">
+            <i class="fa fa-rocket fa-large fa-4x text-info"></i>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center ">
+            <p class="lead">Fully <strong>Open Source</strong> solution</p>
+          </div>
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4   text-center ">
+            <p class="lead">Includes <strong>User contributed modules</strong> that can easily be enabled at will</p>
+          </div>
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center ">
+            <p class="lead">Try <strong>our ready made VirtualBox VM</strong> now</p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+            <a class="btn btn-info btn-lg" href="#" title="">get started with OpsTheatre</a>
+          </div>
+        </div>
+      </div><!-- / CONTAINER-->
+    </section>
+    <!-- / SECTION-1 -->
 
-<pre><code>$ git clone --recursive https://github.com/olindata/ops-theatre.git ops-theatre
-$ cd ops-theatre
-</code></pre>
+    <!-- SECTION-2 -->
+    <section id="section-how">
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+      <div class="container">
+        <div class="row">
+          <div class="page-header text-center">
+            <h2 class="text-info">HOW?</h2>
 
-<p><a href="https://github.com/rajkissu" class="user-mention">@rajkissu</a> and <a href="https://github.com/walterheck" class="user-mention">@walterheck</a> as well as the rest of the team <a href="https://github.com/olindata" class="user-mention">@olindata</a></p>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 wizard-bg">
+            <ul id="myTab" class="nav nav-tabs row">
+              <li class="col-xs-4 col-sm-4 col-md-4 col-lg-4 active text-center">
+                <a  href="#first" data-toggle="tab"><i class="how-step">1</i></a>
+              </li>
+              <li class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
+                <a  href="#second" data-toggle="tab"><i class="how-step">2</i></a>
+              </li>
+              <li class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
+                <a href="#third"  data-toggle="tab"><i class="how-step">3</i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div><!-- /.container -->
+      <div class="container">
+        <div class="row">
+          <div class=" text-center col-sm-12 col-lg-12">
+            <div id="myTabContent" class="tab-content">
+              <div class="tab-pane fade in active" id="first">
+                <div class="row">
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 pull-right" style="padding-top:40px;">
+                    <h1 class="">Install the ops-theatre backend</h1>
+                    <p class="lead">
+                      <small>Your mind will be blown.  </small></p>
+                    <p><a class="btn btn-success btn-lg" href="#" title="">Sign up now!</a></p>
+                  </div>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+                  <div class="text-left col-sm-6 col-lg-6">
+                    <div class="img-negative-box" style="display:inline-block; ">
+                      <i class="fa fa-tachometer"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-<p>Having trouble with OpsTheatre? Check out the documentation at <a href="http://opstheatre.com">http://opstheatre.com</a> or contact <a href="mailto:support@olindata.com">support@olindata.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
+              <div class="tab-pane fade" id="second">
+                <div class="row">
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" style="padding-top:40px;">
+                    <h1 class="">Develop your own modules</h1>
+                    <p class="lead">Easy to use modularised front- and backend
+                      <small>Open Source your modules</small>
+                    </p>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">OpsTheatre maintained by <a href="https://github.com/olindata">olindata</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
+                    <p><a class="btn btn-success btn-lg" href="#" title="">Sign up now!</a></p>
+                  </div>
+                  <!--  description-->
+                  <div class="text-left col-sm-6 col-lg-6">
+                    <div class="img-negative-box" style="display:inline-block;">
+                      <i class="fa fa-tachometer"></i>
+                    </div>
 
-              <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
-            try {
-              var pageTracker = _gat._getTracker("UA-54737945-1");
-            pageTracker._trackPageview();
-            } catch(err) {}
-          </script>
+                  </div>
+                  <!-- / description-->
+                </div>
+              </div> <!-- / tab-pane -->
+              <div class="tab-pane fade" id="third">
+                <div id="carousel-example-generic3" class="carousel slide">
+                  <!-- Wrapper for slides -->
+                  <div class="carousel-inner">
+                    <!-- item-->
+                    <div class="item active">
+                      <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          <div class="panel panel-default">
+                            <div class="panel-body">
+                              <i class="fa fa-tachometer"></i>
+                              <h3>PUPPET USE CASE</h3>
+                              <p class="lead">Have a use case we could display here?</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          <div class="panel panel-default">
+                            <div class="panel-body">
+                              <i class="fa fa-tachometer"></i>
+                              <h3>NAGIOS USE CASE</h3>
+                              <p class="lead">Your success story here?</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /item-->
 
+                    <!-- item-->
+                    <div class="item">
+                      <div class="row">
+
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          <div class="panel panel-default">
+                            <div class="panel-body">
+                              <img src="images/thumb.jpg" style="max-width:100%; height:auto;" alt="">
+                              <h3>CASE TITLE GOES HERE</h3>
+                              <p class="lead">Case description lead paragraph. Lorem ipsum dolor set amet.</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                          <div class="panel panel-default">
+                            <div class="panel-body">
+                              <img src="images/thumb.jpg" style="max-width:100%; height:auto;" alt="">
+                              <h3>CASE TITLE GOES HERE</h3>
+                              <p class="lead">Case description lead paragraph. Lorem ipsum dolor set amet.</p>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                    <!-- /item-->
+
+                  </div>
+
+                  <!-- Controls -->
+                  <a class="left carousel-control" href="#carousel-example-generic3" data-slide="prev">
+                  <span class="fa fa-prev"></span>
+                  </a>
+                  <a class="right carousel-control" href="#carousel-example-generic3" data-slide="next">
+                  <span class="fa fa-next"></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.container -->
+    </section>
+     <!-- / SECTION-2 -->
+
+     <!-- SECTION-3 -->
+    <section id="section-modules">
+      <div class="container">
+        <hr>
+        <div class="row">
+          <div class="page-header text-center">
+            <h2 class="text-info">AVAILABLE MODULES</h2>
+          </div>
+        </div>
+          <!-- ITEMS SLIDER -->
+
+                <div class="row">
+
+                  <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                    <i class="fa fa-tachometer"></i>
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+
+                        <h3>Puppet</h3>
+                        <p >Control your puppet environment from a web interface</p>
+                      </div>
+                      <div class="panel-footer">
+                        <a class="btn btn-block btn-info" href="#">READ MORE</a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                    <i class="fa fa-tachometer"></i>
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+
+                        <h3>Version Control (Coming soon!)</h3>
+                        <p >Manage versions of puppet code, documents, etc.</p>
+                      </div>
+                      <div class="panel-footer">
+                        <a class="btn btn-block btn-info" href="#">READ MORE</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                    <i class="fa fa-tachometer"></i>
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+
+                        <h3>Logstash / ElasticSearch (Coming soon!)</h3>
+                        <p>Search logs from within OpsTheatre</p>
+                      </div>
+                      <div class="panel-footer">
+                        <a class="btn btn-block btn-info" href="#">READ MORE</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                    <i class="fa fa-tachometer"></i>
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+
+                        <h3>Nagios (Coming soon!)</h3>
+                        <p>View your server status straight from OpsTheatre</p>
+                      </div>
+                      <div class="panel-footer">
+                        <a class="btn btn-block btn-info" href="#">READ MORE</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+      </div>
+    </section>
+    <section id="section-quotes">
+      <div class="container">
+<hr>
+<div class="row">
+  <div class="page-header text-center">
+    <h2 class="text-info">WHAT PEOPLE SAY</h2>
+  </div>
+</div>
+        <!-- TESTIMONIALS -->
+        <div class="row">
+          <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 text-center">
+            <img class="img-circle" src="images/avafour.jpg" alt="" width="80" height="80">
+              <p><i class="fa fa-quote-left text-info"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+              <p> <small><strong>Someone famous in <cite title="Source Title">Source Title</cite></small></strong></p>
+          </div>
+          <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 text-center">
+            <img class="img-circle" src="images/avafour.jpg" alt="" width="80" height="80">
+              <p><i class="fa fa-quote-left text-info"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+              <p> <small><strong>Someone famous in <cite title="Source Title">Source Title</cite></small></strong></p>
+          </div>
+          <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 text-center">
+            <img class="img-circle" src="images/avafour.jpg" alt="" width="80" height="80">
+              <p><i class="fa fa-quote-left text-info"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+              <p> <small><strong>Someone famous in <cite title="Source Title">Source Title</cite></small></strong></p>
+          </div>
+          <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 text-center">
+            <img class="img-circle" src="images/avafour.jpg" alt="" width="80" height="80">
+              <p><i class="fa fa-quote-left text-info"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+              <p> <small><strong>Someone famous in <cite title="Source Title">Source Title</cite></small></strong></p>
+          </div>
+        </div>
+        <!-- /.row-->
+        <!-- /TESTIMONIALS -->
+      </div>
+    </section>
+    <section id="section-who">
+      <div class="container">
+        <hr>
+        <div class="row">
+          <div class="page-header text-center">
+            <h2 class="text-info">WHO'S USING THIS TODAY?</h2>
+          </div>
+        </div>
+        <div class="row text-center text-info">
+          <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+            <div class="well">
+              <img src="http://olindata.com/sites/all/themes/olindata/logo.png"></img>
+            </div>
+          </div>
+
+          <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+            <div class="well">
+              <p><em>Your logo here?</em></p>
+            </div>
+          </div>
+
+          <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+            <div class="well">
+              <p><em>Your logo here?</em></p>
+            </div>
+          </div>
+
+          <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+            <div class="well">
+              <p><em>Your logo here?</em></p>
+            </div>
+          </div>
+        </div>
+        <hr>
+      </div><!-- / CONTAINER-->
+    </section>
+    <section id="section-contribute">
+      <div class="container">
+        <div class="row">
+          <div class="text-center col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <p class="lead text-info"><strong>Start managing your infrastructure from a single Theatre now: OpsTheatre</strong></p>
+            <p><a class="btn btn-lg btn-info" href="http://www.opstheatre.com">Get Started now!</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- / SECTION-4 -->
+
+    <!-- FOOTER -->
+    <footer id="footer-section">
+      <div class="container">
+        <p class="text-center"> <a class="" href="http://www.olindata.com">© 2014 Built and maintained by OlinData, Open Source training and consulting</a></p>
+      </div>
+    </footer>
+    <!-- / FOOTER -->
+
+    <!-- JAVASCRIPT -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- / JAVASCRIPT -->
 
   </body>
 </html>

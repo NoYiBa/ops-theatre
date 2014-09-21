@@ -1,0 +1,20 @@
+{
+  "name": "ops-theatre-site",
+  "description": "The site for opstheatre.com.",
+  "version": "1.0",
+  "keywords": [
+    "css",
+    "js",
+    "opstheatre"
+  ],
+  "homepage": "http://opstheatre.com",
+  "ignore": [
+    ".*",
+    "CNAME",
+    "CONTRIBUTING.md"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.9.0",
+    "font-awesome": "~4.2.0"
+  }
+}
