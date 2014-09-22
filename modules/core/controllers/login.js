@@ -13,9 +13,15 @@ function get(req, res) {
 }
 
 function login(req, res) {
+  var body, username, email;
+
+  body     = req.body;
+  username = body.email.split('@')[0];
+  email    = body.email;
+
   _identity = {
-    username : 'rajkissu',
-    email    : 'rajkissu@gmail.com'
+    username : username,
+    email    : body.email
   };
 
   res.send(200);
