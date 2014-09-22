@@ -42,31 +42,37 @@ Replace the contents of the Vagrantfile with the following:
 
     # -*- mode: ruby -*-
     # vi: set ft=ruby :
-
+    
     VAGRANTFILE_API_VERSION = "2"
-
+    
     Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       config.vm.box = "opstheatre"
-
+      
       config.vm.provider "virtualbox" do |vb|
         vb.gui = false
       end
-
+      
       config.vm.define :opstheatre do |ops|
         ops.vm.hostname = 'opstheatre.olindata.com'
         ops.vm.network "private_network", ip: "192.168.56.10"
-        ops.vm.network "forwarded_port", guest: 3030, host: 3030
       end
+      
+      config.vm.provision "shell",
+        inline: "/root/setup.sh"
+        
+      config.vm.post_up_message = "OpsTheatre is now running and should be accessible from your browser at address http://192.168.56.10:3030"
     end
+
+### 3.3 – Start the Appliance
 
 Deploy Vagrant!:
 
   `$ vagrant up opstheatre`
-  
+
     Bringing machine 'opstheatre' up with 'virtualbox' provider...
-    ==> opstheatre: Importing base box 'ops-theatre'...
+    ==> opstheatre: Importing base box 'opstheatre'...
     ==> opstheatre: Matching MAC address for NAT networking...
-    ==> opstheatre: Setting the name of the VM: opstheatre_opstheatre_1411268507306_3678
+    ==> opstheatre: Setting the name of the VM: vagrant_opstheatre_1411390017940_71794
     ==> opstheatre: Clearing any previously set network interfaces...
     ==> opstheatre: Preparing network interfaces based on configuration...
         opstheatre: Adapter 1: nat
@@ -85,61 +91,48 @@ Deploy Vagrant!:
     ==> opstheatre: Setting hostname...
     ==> opstheatre: Configuring and enabling network interfaces...
     ==> opstheatre: Mounting shared folders...
-        opstheatre: /vagrant => /Volumes/data/opstheatre
-        
-
-### 3.3 – Start the Appliance
-
-SSH into the Vagrant instance:
-
-  `$ vagrant ssh`
-  
-    Linux opstheatre 3.2.0-4-486 #1 Debian 3.2.60-1+deb7u3 i686
-
-    The programs included with the Debian GNU/Linux system are free software;
-    the exact distribution terms for each program are described in the
-    individual files in /usr/share/doc/*/copyright.
-
-    Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
-    permitted by applicable law.
-    Last login: Wed Sep 17 22:54:48 2014
-    vagrant@opstheatre:~$
+        opstheatre: /vagrant => /Volumes/data/git/ops-theatre/scripts/vagrant
+    ==> opstheatre: Running provisioner: shell...
+        opstheatre: Running: inline script
+    ==> opstheatre: stdin: is not a tty
+    ==> opstheatre: ##### Updating puppet master host record #####
+    ==> opstheatre: host { 'opstheatre.olindata.com':
+    ==> opstheatre:   ensure => 'present',
+    ==> opstheatre:   ip     => '10.0.2.15',
+    ==> opstheatre:   target => '/etc/hosts',
+    ==> opstheatre: }
+    ==> opstheatre: Starting PostgreSQL 9.1 database server:
+    ==> opstheatre:  main
+    ==> opstheatre: .
+    ==> opstheatre: Starting web server: apache2
+    ==> opstheatre: .
+    ==> opstheatre:
+    ==> opstheatre: ##### Please wait... #####
+    ==> opstheatre:
+    ==> opstheatre: ##### Updating git repository for ops-theatre #####
+    ==> opstheatre: From https://github.com/olindata/ops-theatre
+    ==> opstheatre:  * branch            HEAD       -> FETCH_HEAD
+    ==> opstheatre: Already up-to-date.
+    ==> opstheatre:
+    ==> opstheatre: ##### Starting ops-theatre process #####
+    ==> opstheatre:
+    ==> opstheatre: ##### Updating git repository for ops-theatre-frontend #####
+    ==> opstheatre: From https://github.com/olindata/ops-theatre-frontend
+    ==> opstheatre:  * branch            HEAD       -> FETCH_HEAD
+    ==> opstheatre: Already up-to-date.
+    ==> opstheatre:
+    ==> opstheatre: ##### Starting ops-theatre-frontend process #####
+    ==> opstheatre:
+    ==> opstheatre: ##### You can now browse to http://192.168.56.10:3030
+    ==> opstheatre: ##### on your browser to try OpsTheatre!
     
-
-Get sudo access to the instance:
-
-  `$ sudo su -`
-  
-    vagrant@opstheatre:~$ sudo su -
-    root@opstheatre:~#    
-
-Run the following command to deploy OpsTheatre:
-
-`$ /root/setup.sh`
-
-    ##### Updating puppet master host record #####
-      ensure => 'present',
-      ip     => '10.0.2.15',
-      target => '/etc/hosts',
-    }
-    [ ok ] Starting PostgreSQL 9.1 database server: main.
-    [ ok ] Starting web server: apache2.
-
-    ##### Please wait... #####
-
-    ##### Updating git repository for ops-theatre #####
-    Already up-to-date.
-    
-    ##### Starting ops-theatre process #####
-    
-    ##### Updating git repository for ops-theatre-frontend #####
-    Already up-to-date.
-    
-    ##### Starting ops-theatre-frontend process #####
-
+    ==> opstheatre: Machine 'opstheatre' has a post `vagrant up` message. This is a message
+    ==> opstheatre: from the creator of the Vagrantfile, and not from Vagrant itself:
+    ==> opstheatre:
+    ==> opstheatre: OpsTheatre is now running and should be accessible from your browser at address http://192.168.56.10:3030
 
 ## 4. Take a Test Drive
 
-Open your browser and insert the URL http://localhost:3030 on the address bar. You will be presented with the OpsTheatre login page.
+Open your browser and insert the URL http://192.168.56.10:3030 on the address bar. You will be presented with the OpsTheatre login page.
 
 ![](images/login-page.png)
