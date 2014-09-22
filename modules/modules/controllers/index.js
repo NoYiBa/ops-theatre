@@ -25,7 +25,13 @@ module.exports = {
  * @param {Object} res - express response object.
  */
 function getAll(req, res) {
-  common.getFileTree(config.modules.dir, function (err, files) {
+  common.getFileTree(config.modules.dir, [
+    /^lib$/,
+    /^spec$/,
+    /^puppet$/,
+    /^concat$/,
+    /^stdlib$/
+  ], function (err, files) {
     if (err) {
       res.status(500);
       res.send(err);
