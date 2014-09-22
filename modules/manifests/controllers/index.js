@@ -1,3 +1,9 @@
+/**
+ * Manifests index controller.
+ *
+ * @module manifests/controllers/index
+ * @author rajkissu <rajkissu@gmail.com>
+ */
 'use strict';
 
 var fs, common, config;
@@ -12,6 +18,12 @@ module.exports = {
   save   : save
 };
 
+/**
+ * Get tree listings for Puppet manifests.
+ *
+ * @param {Object} req - express request object.
+ * @param {Object} res - express response object.
+ */
 function getAll(req, res) {
   common.getFileTree(config.manifests.dir, function (err, files) {
     if (err) {
@@ -24,6 +36,12 @@ function getAll(req, res) {
   });
 }
 
+/**
+ * Get contents of a Puppet manifest.
+ *
+ * @param {Object} req - express request object.
+ * @param {Object} res - express response object.
+ */
 function get(req, res) {
   var filename, filepath;
 
@@ -41,6 +59,12 @@ function get(req, res) {
   });
 }
 
+/**
+ * Save changes to a Puppet manifest.
+ *
+ * @param {Object} req - express request object.
+ * @param {Object} res - express response object.
+ */
 function save(req, res) {
   var filename, filepath, data;
 

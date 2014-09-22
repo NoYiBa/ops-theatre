@@ -1,3 +1,9 @@
+/**
+ * PuppetDB index controller.
+ *
+ * @module puppetdb/controllers/index
+ * @author rajkissu <rajkissu@gmail.com>
+ */
 'use strict';
 
 var puppetDB = require('puppet-puppetdb');
@@ -9,21 +15,36 @@ module.exports = {
   getFact      : getFact
 };
 
-// Get a list of nodes known to puppetdb
+/**
+ * Get a list of nodes known to puppetdb.
+ *
+ * @param {Object} req - express request object.
+ * @param {Object} res - express response object.
+ */
 function getNodes(req, res) {
   puppetDB.getAllNodes(config.puppetdb, function (error, data) {
     res.send(data);
   });
 }
 
-// Get a list of all fact names known to puppetdb
+/**
+ * Get a list of all fact names known to puppetdb.
+ *
+ * @param {Object} req - express request object.
+ * @param {Object} res - express response object.
+ */
 function getFactNames(req, res) {
   puppetDB.getAllFactNames(config.puppetdb, function (error, data) {
     res.send(data);
   });
 }
 
-// Get the last stored facts for a node known to puppetdb
+/**
+ * Get the last stored facts for a node known to puppetdb.
+ *
+ * @param {Object} req - express request object.
+ * @param {Object} res - express response object.
+ */
 function getNodeFacts(req, res) {
   var node = req.params.node;
 
@@ -32,7 +53,12 @@ function getNodeFacts(req, res) {
   });
 }
 
-// Get all values for a specific fact known to puppetdb
+/**
+ * Get all values for a specific fact known to puppetdb.
+ *
+ * @param {Object} req - express request object.
+ * @param {Object} res - express response object.
+ */
 function getFact(req, res) {
   var fact = req.params.fact;
 

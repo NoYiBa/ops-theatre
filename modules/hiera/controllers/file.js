@@ -1,3 +1,9 @@
+/**
+ * Hiera file controller.
+ *
+ * @module hiera/controllers/file
+ * @author rajkissu <rajkissu@gmail.com>
+ */
 'use strict';
 
 var hiera, common, config;
@@ -12,7 +18,12 @@ module.exports = {
   save   : save
 };
 
-// get a list of Hiera files
+/**
+ * Get a list of Hiera files.
+ *
+ * @param {Object} req - express request object.
+ * @param {Object} res - express response object.
+ */
 function getAll(req, res) {
   var backend = hiera.getBackendConfig(
     config.hiera.configFile,
@@ -30,7 +41,12 @@ function getAll(req, res) {
   });
 }
 
-// get contents of a Hiera file for a specified backend
+/**
+ * Get contents of a Hiera file.
+ *
+ * @param {Object} req - express request object.
+ * @param {Object} res - express response object.
+ */
 function get(req, res) {
   var backend, file;
 
@@ -40,7 +56,12 @@ function get(req, res) {
   res.send(file);
 }
 
-// save contents to a Hiera file for a specified backend
+/**
+ * Save contents to a Hiera file.
+ *
+ * @param {Object} req - express request object.
+ * @param {Object} res - express response object.
+ */
 function save(req, res) {
   var backend, data;
 
@@ -49,8 +70,8 @@ function save(req, res) {
 
   hiera.saveFile(config.hiera.configFile, backend, req.params[0], data, function (err) {
     if (err) {
-      // TODO: send error code
-      throw err;
+      res.status(500);
+      res.send(err);
     }
 
     res.send(200);

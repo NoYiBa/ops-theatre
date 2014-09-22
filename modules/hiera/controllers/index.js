@@ -1,3 +1,9 @@
+/**
+ * Hiera index controller.
+ *
+ * @module hiera/controllers/index
+ * @author rajkissu <rajkissu@gmail.com>
+ */
 'use strict';
 
 var hiera, config;
@@ -11,17 +17,32 @@ module.exports = {
   saveConfig    : saveConfig,
 };
 
-// get the entire hiera configuration
+/**
+ * Get the entire hiera configuration.
+ *
+ * @param {Object} req - express request object.
+ * @param {Object} res - express response object.
+ */
 function getConfig(req, res) {
   res.send(hiera.getConfig(config.hiera.configFile));
 }
 
-// get hiera hierarchy
+/**
+ * Get hiera hierarchy.
+ *
+ * @param {Object} req - express request object.
+ * @param {Object} res - express response object.
+ */
 function getHierarchy(req, res) {
   res.send(hiera.getHierarchy(config.hiera.configFile));
 }
 
-// persist hiera config file
+/**
+ * Persist hiera config file.
+ *
+ * @param {Object} req - express request object.
+ * @param {Object} res - express response object.
+ */
 function saveConfig(req, res) {
   var ret = hiera.saveConfig(config.hiera.configFile, req.body);
   res.send(200);

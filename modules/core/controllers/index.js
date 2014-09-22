@@ -1,3 +1,9 @@
+/**
+ * Core index controller.
+ *
+ * @module core/controllers/index
+ * @author rajkissu <rajkissu@gmail.com>
+ */
 'use strict';
 
 var _start;
@@ -8,12 +14,19 @@ module.exports = {
   uptime : uptime
 };
 
-// start time
+// store the time the controller is first loaded
 _start = Date.create();
 
+/**
+ * Provides server uptime.
+ *
+ * @param {Object} req - express request object.
+ * @param {Object} res - express response object.
+ */
 function uptime(req, res) {
   var uptime = Date.create() - _start;
 
+  // send uptime in seconds
   res.send({
     start  : _start.toISOString(),
     uptime : (uptime / 1000) + ' seconds'

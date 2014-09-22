@@ -1,3 +1,9 @@
+/**
+ * OpsTheatre API server.
+ *
+ * @module app
+ * @author rajkissu <rajkissu@gmail.com>
+ */
 'use strict';
 
 // needed for some in-house modules and libraries
@@ -30,6 +36,7 @@ app.use(function(req, res, next) {
   next();
 });
 
+// enable routing
 app.use(app.router);
 app.use(express.errorHandler());
 

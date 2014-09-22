@@ -1,3 +1,9 @@
+/**
+ * Facter index controller.
+ *
+ * @module controllers/index
+ * @author rajkissu <rajkissu@gmail.com>
+ */
 'use strict';
 
 var facter = require('puppet-facter');
@@ -7,14 +13,24 @@ module.exports = {
   get    : get,
 };
 
-// Get all facts from the server
+/**
+ * Get all facts from the server.
+ *
+ * @param {Object} req - express request object.
+ * @param {Object} res - express response object.
+ */
 function getAll(req, res) {
   facter.getFacts(false, function (err, data) {
     res.send(data);
   });
 }
 
-// Get a specific fact from facter
+/**
+ * Get a specific fact.
+ *
+ * @param {Object} req - express request object.
+ * @param {Object} res - express response object.
+ */
 function get(req, res) {
   var fact = req.params.fact;
 

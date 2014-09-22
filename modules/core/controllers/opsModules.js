@@ -1,3 +1,9 @@
+/**
+ * Core opsModules controller.
+ *
+ * @module core/controllers/opsModules
+ * @author rajkissu <rajkissu@gmail.com>
+ */
 'use strict';
 
 var modules = require('../../../lib/modules');
@@ -7,12 +13,23 @@ module.exports = {
   get    : get
 };
 
-// retrieve all modules
+/**
+ * Retrieves a list of all OpsTheatre modules.
+ *
+ * @param {Object} req - express request object.
+ * @param {Object} res - express response object.
+ */
 function getAll(req, res) {
   var m = modules._modules;
   res.send(m);
 }
 
+/**
+ * Get configuration for a specific module.
+ *
+ * @param {Object} req - express request object.
+ * @param {Object} res - express response object.
+ */
 function get(req, res) {
   var name, mods;
 

@@ -16,4 +16,4 @@ From the shell:
 NOTE: Sudo privileges are necessary to allow editing of hiera data files,
 manifests, etc
 
-TODO: employ proper deployment practices
+TODO: proper deployment practices

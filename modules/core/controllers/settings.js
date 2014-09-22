@@ -1,6 +1,12 @@
+/**
+ * Core settings controller.
+ *
+ * @module core/controllers/settings
+ * @author rajkissu <rajkissu@gmail.com>
+ */
 'use strict';
 
-var fs, path, async, common, modules;
+var fs, path, async, common, modules, _settings;
 
 fs      = require('fs');
 path    = require('path');
@@ -13,11 +19,24 @@ module.exports = {
   get    : get
 };
 
-// retrieve all module settings
-// TODO: cache settings
+_settings = null;
+
+/**
+ * Retrieves all OpsTheatre module settings.
+ *
+ * @param {Object} req - express request object.
+ * @param {Object} res - express response object.
+*/
 function getAll(req, res) {
   var tasks = {};
 
+  // return a cached copy if it exists
+  if (Object.isObject(_settings)) {
+    res.send(_settings);
+    return;
+  }
+
+  // setup tasks to retrieve individual module settings
   Object.each(modules._modules, function (name, module) {
     tasks[name] = function (cb) {
       getSettings(name, cb);
@@ -37,10 +56,17 @@ function getAll(req, res) {
       }
     });
 
+    // cache the settings
+    _settings = settings;
+
     res.send(settings);
   });
 }
 
+/**
+ * @param {Object} req - express request object.
+ * @param {Object} res - express response object.
+ */
 function get(req, res) {
   var name = req.params.module;
 
@@ -49,13 +75,19 @@ function get(req, res) {
   });
 }
 
-// get settings for a given module
+/**
+ * Retrieves settings for a specific OpsTheatre module.
+ *
+ * @param {Object} req - express request object.
+ * @param {Object} res - express response object.
+ */
 function getSettings(name, cb) {
   var module, filepath;
   
   module   = modules._modules[name];
   filepath = module.path + '/settings.json';
 
+  // check if the module has a settings file
   fs.exists(filepath, function (exists) {
     var settings;
 
