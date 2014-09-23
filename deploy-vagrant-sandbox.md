@@ -10,7 +10,7 @@ The Vagrant box is a Debian 7 virtual machine image with a pre-configured Puppet
 
 ## 2. Download the Vagrant Box
 
-Download the vagrant box from here: Insert link.
+Download the vagrant box from here: [Download](http://www.olindata.com/sites/default/files/resources/boxes/ops-theatre-0.2.0.box).
 
 ## 3. Download the Vagrant Software
 ### 3.1 – Download and Install Vagrant

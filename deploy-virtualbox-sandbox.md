@@ -10,7 +10,7 @@ The appliance is a Debian 7 virtual machine image with a pre-configured Puppet M
 
 ## 2. Download the Virtual Appliance
 
-Download the image from here: Insert link.
+Download the image from here: [Download](http://www.olindata.com/sites/default/files/resources/boxes/ops-theatre-0.2.0-ovf.zip).
 
 The image is compressed using zip. Be sure to extract it before moving on.
 
