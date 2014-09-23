@@ -27,10 +27,7 @@ module.exports = {
 function getAll(req, res) {
   common.getFileTree(config.modules.dir, [
     /^lib$/,
-    /^spec$/,
-    /^puppet$/,
-    /^concat$/,
-    /^stdlib$/
+    /^spec$/
   ], function (err, files) {
     if (err) {
       res.status(500);
