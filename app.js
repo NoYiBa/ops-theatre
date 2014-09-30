@@ -4,7 +4,9 @@
  * @module app
  * @author rajkissu <rajkissu@gmail.com>
  */
-'use strict';
+
+/* jslint node: true */
+"use strict";
 
 // needed for some in-house modules and libraries
 require('sugar');
