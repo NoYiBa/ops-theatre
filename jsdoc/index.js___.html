@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: frontends/angular/public/modules/hiera/controllers/index.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: frontends/angular/public/modules/hiera/controllers/index.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/**
+ * Hiera index controller.
+ *
+ * @module hiera/controllers/index
+ * @author rajkissu &lt;rajkissu@gmail.com>
+ */
+app.controller('HieraCtrl', function (OPS_SERVER, $scope, $http) {
+  'use strict';
+
+  var master, hiera, backends, hierarchy;
+
+  $scope.addBackend      = addBackend;
+  $scope.removeBackend   = removeBackend;
+  $scope.addHierarchy    = addHierarchy;
+  $scope.removeHierarchy = removeHierarchy;
+  $scope.up              = up;
+  $scope.down            = down;
+  $scope.save            = save;
+  $scope.reset           = reset;
+
+  /**
+   * Adds an empty backend placeholder to the UI.
+   *
+   * @param {number} index - adds element at specified array index.
+   */
+  function addBackend(index) {
+    backends.add({
+      name    : '',
+      datadir : ''
+    }, index + 1);
+  }
+
+  /**
+   * Removes a backend from the UI.
+   *
+   * @param {number} index - removes element at specified array index.
+   */
+  function removeBackend(index) {
+    if (backends.length > 1) {
+      backends.removeAt(index);
+    }
+  }
+
+  /**
+   * Adds a nameless hiearchy to the UI.
+   *
+   * @param {number} index - adds element at specified array index.
+   */
+  function addHierarchy(index) {
+    hierarchy.add({ name: '' }, index + 1);
+  }
+
+  /**
+   * Removes a hiearchy from the UI.
+   *
+   * @param {number} index - removes element at specified array index.
+   */
+  function removeHierarchy(index) {
+    if (hierarchy.length > 1) {
+      hierarchy.removeAt(index);
+    }
+  }
+
+  /**
+   * Moves a hiearchy item up in the UI.
+   *
+   * @param {number} index - array index to move up.
+   */
+  function up(index) {
+    var curr, prev;
+
+    // at the top already, no moving
+    if (index === 0) {
+      return;
+    }
+
+    curr = hierarchy[index];
+    prev = hierarchy[index - 1];
+
+    hierarchy[index] = prev;
+    hierarchy[index - 1] = curr;
+  }
+
+  /**
+   * Moves a hiearchy item down in the UI.
+   *
+   * @param {number} index - array index to move down.
+   */
+  function down(index) {
+    var curr, next;
+
+    // at the bottom already, no moving
+    if (index === hierarchy.length - 1) {
+      return;
+    }
+
+    curr = hierarchy[index];
+    next = hierarchy[index + 1];
+
+    hierarchy[index] = next;
+    hierarchy[index + 1] = curr;
+  }
+
+  /**
+   * Save changes to the actual Hiera configuration.
+   */
+  function save() {
+    // setup form data
+    var form = {
+      ':backends'  : [],
+      ':hierarchy' : []
+    };
+
+    // format hierarchy data into a savable format
+    angular.forEach(hiera.hierarchy, function (item, index) {
+      form[':hierarchy'][index] = item.name;
+    });
+
+    // format backend data into a savable format
+    angular.forEach(hiera.backends, function (backend, index) {
+      form[':backends'][index] = backend.name;
+      form[':' + backend.name] = {
+        ':datadir' : backend.datadir
+      };
+    });
+
+    // attempt to save
+    $http.post(OPS_SERVER + '/hiera', form)
+    .success(function (data) {
+      console.log(data);
+    });
+  }
+
+  /**
+   * Reset the Hiera configuration settings on the UI.
+   */
+  function reset() {
+    // fetch the local master copy
+    hiera = angular.copy(master);
+
+    backends  = hiera.backends;
+    hierarchy = hiera.hierarchy;
+
+    // pass the reset to angular
+    $scope.hiera = hiera;
+  }
+
+  // fetch Hiera configuration and load it to the UI
+  $http.get(OPS_SERVER + '/hiera').success(function (data) {
+    // set a master state for future rollbacks
+    master = {
+      backends  : [],
+      hierarchy : []
+    };
+
+    // parse backend data for UI.
+    angular.forEach(data[':backends'], function (name) {
+      var thisBackend = data[':' + name];
+
+      // format the data
+      master.backends.push({
+        name    : name,
+        datadir : thisBackend[':datadir']
+      });
+    });
+
+    // parse hierarchy data for UI.
+    angular.forEach(data[':hierarchy'], function (item, index) {
+      master.hierarchy[index] = {
+        name : item
+      };
+    });
+
+    // reset() sets the Hiera configuration UI state to
+    // the fetched values
+    $scope.reset();
+  });
+});
+
+app.run(function (OPS_SERVER, $http, OpsNav) {
+  // add navigation entry
+  var hieraNav = {
+    title    : 'Hiera',
+    // icon     : 'fa-sitemap',
+    children : [ {
+      sref  : 'restricted.hiera',
+      title : 'Configuration'
+    } ]
+  };
+
+  OpsNav.add(hieraNav);
+
+  $http.get(OPS_SERVER + '/hiera/backends').success(function (data) {
+    // add each backend to navigation
+    angular.forEach(data, function (backend) {
+      hieraNav.children.push({
+        href  : '/#/hiera/' + backend,
+        title : 'Hiera data (' + backend + ')'
+      });
+    });
+  });
+});
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-app.html">app</a></li><li><a href="index_.html">controllers/index</a></li><li><a href="dashboard.html">core/controllers/dashboard</a></li><li><a href="help.html">core/controllers/help</a></li><li><a href="index__.html">core/controllers/index</a></li><li><a href="login.html">core/controllers/login</a></li><li><a href="opsModules.html">core/controllers/opsModules</a></li><li><a href="profile.html">core/controllers/profile</a></li><li><a href="settings.html">core/controllers/settings</a></li><li><a href="editor.html">core/directives/editor</a></li><li><a href="filetree.html">core/directives/filetree</a></li><li><a href="authorize.html">core/factories/authorize</a></li><li><a href="identity.html">core/factories/identity</a></li><li><a href="nav.html">core/factories/nav</a></li><li><a href="backend.html">hiera/controllers/backend</a></li><li><a href="file.html">hiera/controllers/file</a></li><li><a href="index___.html">hiera/controllers/index</a></li><li><a href="common.html">lib/common</a></li><li><a href="modules.html">lib/modules</a></li><li><a href="index____.html">manifests/controllers/index</a></li><li><a href="index_____.html">modules/controllers/index</a></li><li><a href="index______.html">puppetdb/controllers/index</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Tue Sep 30 2014 17:39:49 GMT+0200 (CEST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
