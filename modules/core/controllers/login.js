@@ -4,7 +4,8 @@
  * @module core/controllers/login
  * @author rajkissu <rajkissu@gmail.com>
  */
-'use strict';
+/* jslint node: true */
+"use strict";
 
 module.exports = {
   get    : get,

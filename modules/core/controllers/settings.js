@@ -4,7 +4,8 @@
  * @module core/controllers/settings
  * @author rajkissu <rajkissu@gmail.com>
  */
-'use strict';
+/* jslint node: true */
+"use strict";
 
 var fs, path, async, common, modules, _settings;
 

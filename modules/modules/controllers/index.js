@@ -4,7 +4,8 @@
  * @module modules/controllers/index
  * @author rajkissu <rajkissu@gmail.com>
  */
-'use strict';
+/* jslint node: true */
+"use strict";
 
 var fs, common, config;
 

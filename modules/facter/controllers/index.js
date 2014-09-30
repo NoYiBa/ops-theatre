@@ -4,7 +4,8 @@
  * @module controllers/index
  * @author rajkissu <rajkissu@gmail.com>
  */
-'use strict';
+/* jslint node: true */
+"use strict";
 
 var facter = require('puppet-facter');
 

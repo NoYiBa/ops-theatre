@@ -4,7 +4,8 @@
  * @module core/controllers/opsModules
  * @author rajkissu <rajkissu@gmail.com>
  */
-'use strict';
+/* jslint node: true */
+"use strict";
 
 var modules = require('../../../lib/modules');
 

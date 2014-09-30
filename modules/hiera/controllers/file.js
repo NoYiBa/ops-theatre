@@ -4,7 +4,8 @@
  * @module hiera/controllers/file
  * @author rajkissu <rajkissu@gmail.com>
  */
-'use strict';
+/* jslint node: true */
+"use strict";
 
 var hiera, common, config;
 
