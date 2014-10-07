@@ -8,28 +8,16 @@ The Vagrant box is a Debian 7 virtual machine image with a pre-configured Puppet
 * 3 GB of free disk space
 * A 32-bit kernel
 
-## 2. Download the Vagrant Box
-
-Download the vagrant box from here: [Download](http://www.olindata.com/sites/default/files/resources/boxes/ops-theatre-0.2.0.box).
-
-## 3. Download the Vagrant Software
-### 3.1 – Download and Install Vagrant
+## 2. Download the Vagrant Software
+### 2.1 – Download and Install Vagrant
 
 * Follow [this guide](https://www.virtualbox.org/wiki/Downloads) in order to install VirtualBox. (We are using VirtualBox as the provider)
 * Follow [this guide](http://www.vagrantup.com/downloads.html) in order to install Vagrant.
 
-### 3.2 - Deploy the Virtual Machine
+### 2.2 - Deploy the Virtual Machine
 
 Run the following commands to get the vagrant up and working:
 
-Import the Vagrant box:
-
-  `$ vagrant box add opstheatre <download path>/ops-theatre.box`
-    
-    ==> box: Adding box 'ops-theatre' (v0) for provider:
-        box: Downloading: file:///Volumes/data/ops-theatre.box
-    ==> box: Successfully added box 'ops-theatre' (v0) for 'virtualbox'!
-  
 Create a Vagrant directory:
 
   `$ mkdir opstheatre`
@@ -46,7 +34,7 @@ Replace the contents of the Vagrantfile with the following:
     VAGRANTFILE_API_VERSION = "2"
     
     Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-      config.vm.box = "opstheatre"
+      config.vm.box = "opstheatre/opstheatre-demo"
       
       config.vm.provider "virtualbox" do |vb|
         vb.gui = false
@@ -63,7 +51,7 @@ Replace the contents of the Vagrantfile with the following:
       config.vm.post_up_message = "OpsTheatre is now running and should be accessible from your browser at address http://192.168.56.10:3030"
     end
 
-### 3.3 – Start the Appliance
+### 2.3 – Start the Appliance
 
 Deploy Vagrant!:
 
@@ -131,7 +119,7 @@ Deploy Vagrant!:
     ==> opstheatre:
     ==> opstheatre: OpsTheatre is now running and should be accessible from your browser at address http://192.168.56.10:3030
 
-## 4. Take a Test Drive
+## 3. Take a Test Drive
 
 Open your browser and insert the URL http://192.168.56.10:3030 on the address bar. You will be presented with the OpsTheatre login page.
 
