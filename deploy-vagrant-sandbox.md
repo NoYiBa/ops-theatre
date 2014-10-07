@@ -121,6 +121,8 @@ Deploy Vagrant!:
 
 ## 3. Take a Test Drive
 
-Open your browser and insert the URL http://192.168.56.10:3030 on the address bar. You will be presented with the OpsTheatre login page.
+Open your browser and insert the URL http://192.168.56.10:3030 on the address bar. You will be presented with the OpsTheatre login page. The credentials are not enforced yet, so enter anything you want.
 
 ![](images/login-page.png)
+
+Having trouble? Check the node.js application logs by ssh'ing into the vagrant machine and entering screen. Also check your javascript console error log in your browser.  
