@@ -1,15 +1,17 @@
 {
   "name": "Hiera",
   "routes": {
-    "GET /"                    : "index.getConfig",
-    "GET /hierarchy"           : "index.getHierarchy",
-    "POST /"                   : "index.saveConfig",
+    "GET /"                     : "index.getConfig",
+    "GET /hierarchy"            : "index.getHierarchy",
+    "POST /"                    : "index.saveConfig",
 
-    "GET /backends"            : "backend.getAll",
-    "GET /backends/:backend"   : "backend.get",
+    "GET /backends"             : "backend.getAll",
+    "GET /backends/:backend"    : "backend.get",
 
-    "GET /files/:backend"      : "file.getAll",
-    "GET /files/:backend/*"    : "file.get",
-    "POST /files/:backend/*"   : "file.save"
+    "GET /files/:backend"       : "file.getAll",
+    "GET /files/:backend/*"     : "file.get",
+    "POST /files/:backend/*"    : "file.save",
+
+    "GET /overrides/:backend/*" : "override.get"
   }
 }

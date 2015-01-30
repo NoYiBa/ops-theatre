@@ -24,7 +24,15 @@ module.exports = {
  * @param {Object} res - express response object.
  */
 function getAll(req, res) {
-  res.send(hiera.getBackends(config.hiera.configFile));
+  hiera.getBackends(config.hiera.configFile, function (err, backends) {
+    if (err) {
+      res.status(500);
+      res.send(err);
+      return;
+    }
+
+    res.send(backends);
+  });
 }
 
 /**
@@ -35,5 +43,13 @@ function getAll(req, res) {
  */
 function get(req, res) {
   var backend = req.params.backend;
-  res.send(hiera.getBackendConfig(config.hiera.configFile, backend));
+  hiera.getBackendConfig(config.hiera.configFile, backend, function (err, data) {
+    if (err) {
+      res.status(500);
+      res.send(err);
+      return;
+    }
+
+    res.send(data);
+  });
 }

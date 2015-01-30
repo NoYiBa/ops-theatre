@@ -7,8 +7,9 @@
 /* jslint node: true */
 "use strict";
 
-var hiera, common, config;
+var async, hiera, common, config;
 
+async  = require('async');
 hiera  = require('puppet-hiera');
 common = require('../../../lib/common');
 config = require('../../../config.json');
@@ -26,12 +27,26 @@ module.exports = {
  * @param {Object} res - express response object.
  */
 function getAll(req, res) {
-  var backend = hiera.getBackendConfig(
-    config.hiera.configFile,
-    req.params.backend
-  );
+  var backend = req.params.backend;
 
-  common.getFileTree(backend[':datadir'], function (err, files) {
+  async.waterfall([
+    function (cb) {
+      hiera.getBackendConfig(
+        config.hiera.configFile,
+        backend,
+        cb
+      );
+    },
+
+    function (b, cb) {
+      if (!b) {
+        cb(new Error('Backend ' +  backend + ' not found!'));
+        return;
+      }
+
+      common.getFileTree(b[':datadir'], cb);
+    }
+  ], function (err, files) {
     if (err) {
       res.status(500);
       res.send(err);
@@ -49,12 +64,17 @@ function getAll(req, res) {
  * @param {Object} res - express response object.
  */
 function get(req, res) {
-  var backend, file;
+  var backend = req.params.backend;
 
-  backend = req.params.backend;
-  file    = hiera.getFile(config.hiera.configFile, backend, req.params[0]);
+  hiera.getFile(config.hiera.configFile, backend, req.params[0], function (err, file) {
+    if (err) {
+      res.status(500);
+      res.send(err);
+      return;
+    }
 
-  res.send(file);
+    res.send(file);
+  });
 }
 
 /**
@@ -73,6 +93,7 @@ function save(req, res) {
     if (err) {
       res.status(500);
       res.send(err);
+      return;
     }
 
     res.send(200);

@@ -25,7 +25,15 @@ module.exports = {
  * @param {Object} res - express response object.
  */
 function getConfig(req, res) {
-  res.send(hiera.getConfig(config.hiera.configFile));
+  hiera.getConfig(config.hiera.configFile, function (err, config) {
+    if (err) {
+      res.status(500);
+      res.send(err);
+      return;
+    }
+
+    res.send(config);
+  });
 }
 
 /**
@@ -35,7 +43,15 @@ function getConfig(req, res) {
  * @param {Object} res - express response object.
  */
 function getHierarchy(req, res) {
-  res.send(hiera.getHierarchy(config.hiera.configFile));
+  hiera.getHierarchy(config.hiera.configFile, function (err, hierarchy) {
+    if (err) {
+      res.status(500);
+      res.send(err);
+      return;
+    }
+
+    res.send(hierarchy);
+  });
 }
 
 /**
@@ -45,6 +61,13 @@ function getHierarchy(req, res) {
  * @param {Object} res - express response object.
  */
 function saveConfig(req, res) {
-  var ret = hiera.saveConfig(config.hiera.configFile, req.body);
-  res.send(200);
+  hiera.saveConfig(config.hiera.configFile, req.body, function (err) {
+    if (err) {
+      res.status(500);
+      res.send(err);
+      return;
+    }
+
+    res.send(200);
+  });
 }
