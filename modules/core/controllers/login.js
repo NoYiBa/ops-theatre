@@ -7,6 +7,8 @@
 /* jslint node: true */
 "use strict";
 
+var crypto = require('crypto');
+
 module.exports = {
   get    : get,
   login  : login,
@@ -14,6 +16,12 @@ module.exports = {
 };
 
 var _identity = null;
+
+// TODO: offload this to the database
+var _allowedUsers = [
+  { email : 'walterheck@olindata.com', password : 'b7809b29b74213e6b6b6ab598fa104da' },
+  { email : 'raj@olindata.com', password : '673a2a9b802628811be52704bc3b05e9' }
+];
 
 /**
  * Retrieves the login identity.
@@ -34,19 +42,38 @@ function get(req, res) {
  * @todo secure the login process.
  */
 function login(req, res) {
-  var body, username, email;
+  var body, username, email, password, md5sum;
 
   body     = req.body;
   username = body.email.split('@')[0];
   email    = body.email;
+  password = body.password;
 
-  // accept any identity for now
-  _identity = {
-    username : username,
-    email    : body.email
-  };
+  // hash the password
+  md5sum = crypto.createHash('md5');
+  md5sum.update(password);
 
-  res.send(200);
+  password = md5sum.digest('hex');
+
+  // find a valid user
+  _identity = _allowedUsers.find({
+    email    : email,
+    password : password
+  });
+
+  if (_identity) {
+    // valid user found, don't send the password!
+    _identity = {
+      username : username,
+      email    : email
+    };
+
+    res.send(200);
+    return;
+  }
+
+  // no valid user found
+  res.send(403);
 }
 
 /**
